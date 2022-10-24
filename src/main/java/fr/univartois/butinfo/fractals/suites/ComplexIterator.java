@@ -8,5 +8,7 @@ public interface ComplexIterator {
 
     IComplex getNext();
 
+    IComplex get(int indice);
+
     void reset();
 }

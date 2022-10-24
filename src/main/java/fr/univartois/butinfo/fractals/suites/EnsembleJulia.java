@@ -9,15 +9,22 @@ public class EnsembleJulia implements SuitesStrategy {
 
     private IComplex c;
 
-    @Override
-    public IComplex getFirstElement() {
-        return (z.multiply(z)).add(c);
+    private int maxIterations;
+
+    private SuiteIterator iterator;
+
+    public EnsembleJulia(IComplex z, IComplex c, int maxIterations){
+        this.z = z;
+        this.c = c;
+        this.maxIterations = maxIterations;
+        this.iterator = new SuiteIterator(this, maxIterations);
     }
 
     @Override
-    public IComplex calculateNextTerm(IComplex previousTerm) {
-        return previousTerm.multiply(z.multiply(z)).add(c);
+    public IComplex calculateNextTerm(IComplex previous) {
+        if (previous == null){
+            return (z.multiply(z)).add(c);
+        }
+        return previous.multiply(z.multiply(z)).add(c);
     }
-
-
 }

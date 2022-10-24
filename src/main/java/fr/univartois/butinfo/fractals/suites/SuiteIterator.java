@@ -1,6 +1,7 @@
 package fr.univartois.butinfo.fractals.suites;
 
 import fr.univartois.butinfo.fractals.complex.Complex;
+import fr.univartois.butinfo.fractals.complex.IComplex;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,7 @@ public class SuiteIterator implements ComplexIterator {
 
     private int iterationsLimit;
 
-    private List<Complex> complexes = new ArrayList<>();
+    private List<IComplex> complexes = new ArrayList<>();
 
 
     public SuiteIterator(SuitesStrategy strategy, int iterationsLimit){
@@ -34,16 +35,16 @@ public class SuiteIterator implements ComplexIterator {
     }
 
     @Override
-    public Complex getNext(){
+    public IComplex getNext(){
         if (!hasNext()){
             return null;
         }
 
-        Complex next;
+        IComplex next;
         if (nbIterations == 0){
             next = strategy.getFirstElement();
         } else {
-            Complex previous = complexes.get(nbIterations);
+            IComplex previous = complexes.get(nbIterations);
             next = strategy.calculateNextTerm(previous);
         }
 

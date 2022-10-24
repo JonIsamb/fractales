@@ -25,6 +25,6 @@ public class EnsembleJulia implements SuitesStrategy {
         if (previous == null){
             return (z.multiply(z)).add(c);
         }
-        return previous.multiply(z.multiply(z)).add(c);
+        return (previous.multiply(previous)).add(c);
     }
 }

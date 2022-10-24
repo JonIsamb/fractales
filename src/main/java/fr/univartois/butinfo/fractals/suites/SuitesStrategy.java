@@ -4,7 +4,7 @@ import fr.univartois.butinfo.fractals.complex.Complex;
 import fr.univartois.butinfo.fractals.complex.IComplex;
 
 public interface SuitesStrategy {
-    IComplex calculateNextTerm(IComplex previousTerm);
+    IComplex calculateNextTerm(IComplex previous);
 
-    IComplex getFirstElement();
+
 }

@@ -1,9 +1,10 @@
 package fr.univartois.butinfo.fractals.suites;
 
 import fr.univartois.butinfo.fractals.complex.Complex;
+import fr.univartois.butinfo.fractals.complex.IComplex;
 
 public interface SuitesStrategy {
-    Complex calculateNextTerm(Complex previousTerm);
+    IComplex calculateNextTerm(IComplex previousTerm);
 
-    Complex getFirstElement();
+    IComplex getFirstElement();
 }

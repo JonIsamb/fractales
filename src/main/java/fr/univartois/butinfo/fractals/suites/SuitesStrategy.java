@@ -1,5 +1,7 @@
 package fr.univartois.butinfo.fractals.suites;
 
 public interface SuitesStrategy {
-    Complex calculerTermeSuivant(Complex termePrecedent);
+    Complex calculateNextTerm(Complex previousTerm);
+
+    public Complex getFirstElement(Complex z);
 }

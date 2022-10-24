@@ -32,12 +32,12 @@ public class Complex implements IComplex{
 
     @Override
     public double getRealPart() {
-        return 0;
+        return this.re;
     }
 
     @Override
     public double getImaginaryPart() {
-        return 0;
+        return this.im;
     }
 
     @Override

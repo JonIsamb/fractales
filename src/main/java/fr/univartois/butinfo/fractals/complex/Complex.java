@@ -16,7 +16,7 @@ public class Complex implements IComplex{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Complex complex = (Complex) o;
-        return Double.compare(complex.re, re) == 0 && Double.compare(complex.im, im) == 0;
+        return this.subtract((Complex) o).abs()<0.0001;
     }
 
     @Override
@@ -87,9 +87,6 @@ public class Complex implements IComplex{
     public IComplex multiply(IComplex other) {
         double re = this.getRealPart()* other.getRealPart()-this.getImaginaryPart()*other.getImaginaryPart();
         double im = this.getRealPart()*other.getImaginaryPart()+this.getImaginaryPart()*other.getRealPart();
-        if (re==-0.0){
-            re = 0.0;
-        }
         Complex result = new Complex(re,im);
         return result;
     }

@@ -57,27 +57,49 @@ public class Complex implements IComplex{
 
     @Override
     public IComplex add(IComplex other) {
-        return null;
+        double re = other.getRealPart()+this.getRealPart();
+        double im = other.getImaginaryPart()+this.getImaginaryPart();
+        Complex result = new Complex(re,im);
+        return result;
     }
 
     @Override
     public IComplex subtract(IComplex other) {
-        return null;
+        double re = this.getRealPart()-other.getRealPart();
+        double im = this.getImaginaryPart()-other.getImaginaryPart();
+        Complex result = new Complex(re,im);
+        return result;
     }
 
     @Override
     public IComplex multiply(double value) {
-        return null;
+        double re = value*this.getRealPart();
+        double im = value*this.getImaginaryPart();
+        Complex result = new Complex(re,im);
+        return result;
     }
 
     @Override
     public IComplex multiply(IComplex other) {
-        return null;
+        double re = this.getRealPart()* other.getRealPart()-this.getImaginaryPart()*other.getImaginaryPart();
+        double im = this.getRealPart()*other.getImaginaryPart()+this.getImaginaryPart()*other.getRealPart();
+        if (re==-0.0){
+            re = 0.0;
+        }
+        Complex result = new Complex(re,im);
+        return result;
     }
 
     @Override
     public IComplex divide(IComplex other) {
-        return null;
+        double quotien = other.getRealPart()*other.getRealPart()+other.getImaginaryPart()*other.getImaginaryPart();
+        double re = this.getRealPart()* other.getRealPart()+this.getImaginaryPart()*other.getImaginaryPart();
+        double im = this.getImaginaryPart()*other.getRealPart()-this.getRealPart()*other.getImaginaryPart();
+        re = re/quotien;
+        im = im/quotien;
+
+        Complex result = new Complex(re,im);
+        return result;
     }
 }
 

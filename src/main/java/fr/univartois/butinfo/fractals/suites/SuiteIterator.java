@@ -11,24 +11,19 @@ public class SuiteIterator implements ComplexIterator {
 
     private int nbIterations = 0;
 
-    private int iterationsLimit;
+    private int maxIterations;
 
-    private List<IComplex> complexes = new ArrayList<>();
+    private IComplex current;
 
-
-    public SuiteIterator(SuitesStrategy strategy, int iterationsLimit){
+    public SuiteIterator(SuitesStrategy strategy, int maxIterations){
         this.strategy = strategy;
-        this.iterationsLimit = iterationsLimit;
+        this.maxIterations = maxIterations;
     }
 
     @Override
     public boolean hasNext() {
-        if (nbIterations < iterationsLimit) {
-            if (nbIterations == 0) {
-                return (strategy.getFirstElement().abs() <= 2);
-            } else {
-                return (complexes.get(nbIterations).abs() <= 2);
-            }
+        if (nbIterations <= maxIterations) {
+            return (current.abs() <= 2);
         } else {
             return false;
         }
@@ -40,21 +35,26 @@ public class SuiteIterator implements ComplexIterator {
             return null;
         }
 
-        IComplex next;
-        if (nbIterations == 0){
-            next = strategy.getFirstElement();
-        } else {
-            IComplex previous = complexes.get(nbIterations);
-            next = strategy.calculateNextTerm(previous);
-        }
+        this.current = strategy.calculateNextTerm(this.current);
 
-        complexes.add(next);
         nbIterations++;
-        return next;
+        return this.current;
+    }
+
+    @Override
+    public IComplex get(int indice) {
+        IComplex complex = null;
+        int compteur = 0;
+        while(compteur < indice){
+            complex = strategy.calculateNextTerm(complex);
+            compteur++;
+        }
+        return complex;
     }
 
     @Override
     public void reset(){
         nbIterations = 0;
+        current = null;
     }
 }

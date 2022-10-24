@@ -2,6 +2,9 @@ package fr.univartois.butinfo.fractals.suites;
 
 import fr.univartois.butinfo.fractals.complex.Complex;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SuiteIterator implements ComplexIterator {
     private SuitesStrategy strategy;
 
@@ -17,6 +20,7 @@ public class SuiteIterator implements ComplexIterator {
         this.iterationsLimit = iterationsLimit;
     }
 
+    @Override
     public boolean hasNext() {
         if (nbIterations < iterationsLimit) {
             if (nbIterations == 0) {
@@ -29,6 +33,7 @@ public class SuiteIterator implements ComplexIterator {
         }
     }
 
+    @Override
     public Complex getNext(){
         if (!hasNext()){
             return null;
@@ -38,7 +43,7 @@ public class SuiteIterator implements ComplexIterator {
         if (nbIterations == 0){
             next = strategy.getFirstElement();
         } else {
-            previous = complexes.get(nbIterations);
+            Complex previous = complexes.get(nbIterations);
             next = strategy.calculateNextTerm(previous);
         }
 
@@ -47,6 +52,7 @@ public class SuiteIterator implements ComplexIterator {
         return next;
     }
 
+    @Override
     public void reset(){
         nbIterations = 0;
     }

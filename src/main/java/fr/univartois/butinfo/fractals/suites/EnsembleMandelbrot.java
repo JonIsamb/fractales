@@ -21,6 +21,6 @@ public class EnsembleMandelbrot implements SuitesStrategy {
         if (previous == null){
             return (z.multiply(z)).add(z);
         }
-        return previous.multiply(z.multiply(z)).add(z);
+        return (previous.multiply(previous)).add(z);
     }
 }

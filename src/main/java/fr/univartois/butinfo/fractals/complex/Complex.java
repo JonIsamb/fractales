@@ -42,17 +42,21 @@ public class Complex implements IComplex{
 
     @Override
     public double abs() {
-        return 0;
+        double sum = this.getRealPart()*this.getRealPart()+this.getImaginaryPart()*this.getImaginaryPart();
+        return Math.sqrt(sum);
     }
 
     @Override
     public IComplex negate() {
-        return null;
+        IComplex result = this.multiply(-1);
+        return result;
     }
 
     @Override
     public IComplex conjugate() {
-        return null;
+        double im = this.getImaginaryPart()*-1;
+        Complex result = new Complex(this.getRealPart(),im);
+        return result;
     }
 
     @Override

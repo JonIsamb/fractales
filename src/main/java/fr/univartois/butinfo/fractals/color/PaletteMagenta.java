@@ -14,7 +14,7 @@ public class PaletteMagenta implements IColor {
 
     @Override
     public Color getColor(int nbIteration) {
-        return new Color(color.getRed()/(nbIteration/NB_NUANCE),color.getGreen()/(nbIteration/NB_NUANCE),color.getBlue()/(nbIteration/NB_NUANCE));
+        return new Color(color.getRed()/(nbIteration+1/NB_NUANCE),color.getGreen()/(nbIteration+1/NB_NUANCE),color.getBlue()/(nbIteration+1/NB_NUANCE));
     }
 
     @Override

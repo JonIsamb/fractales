@@ -5,6 +5,7 @@ import fr.univartois.butinfo.fractals.color.IColor;
 import fr.univartois.butinfo.fractals.color.PaletteMagenta;
 import fr.univartois.butinfo.fractals.complex.Complex;
 import fr.univartois.butinfo.fractals.complex.IComplex;
+import fr.univartois.butinfo.fractals.complex.MultiplyPlan;
 import fr.univartois.butinfo.fractals.complex.Plan;
 import fr.univartois.butinfo.fractals.suites.EnsembleJulia;
 import fr.univartois.butinfo.fractals.suites.SuiteIterator;
@@ -72,12 +73,13 @@ public class ImageBuilder {
     public IFractalImage getResult() throws IOException {
         IFractalImage image = new BufferedImageAdapter(width, height);
         Plan plan = new Plan(height, width);
+        MultiplyPlan scaledPlan = new MultiplyPlan(scale, plan, height, width);
         IComplex c = new Complex(-0.4,0.6);
         IColor paletteColor = new PaletteMagenta();
 
         for(int x = 0; x<width; x++){
             for(int y = 0; y<height; y++){
-                IComplex point = plan.asComplex(x, y);
+                IComplex point = scaledPlan.asComplex(x, y);
                 EnsembleJulia typeSuite = new EnsembleJulia(point, c, iterationsMax);
                 SuiteIterator iterator = (SuiteIterator) typeSuite.iterator();
                 while(iterator.hasNext()){

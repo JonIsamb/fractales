@@ -1,9 +1,10 @@
 package fr.univartois.butinfo.fractals.suites;
 
-import fr.univartois.butinfo.fractals.complex.Complex;
 import fr.univartois.butinfo.fractals.complex.IComplex;
 
-public class EnsembleJulia implements SuitesStrategy {
+import java.util.function.BinaryOperator;
+
+public class GeneralisationJulia implements SuitesStrategy {
 
     private IComplex z;
 
@@ -13,7 +14,10 @@ public class EnsembleJulia implements SuitesStrategy {
 
     private SuiteIterator iterator;
 
-    public EnsembleJulia(IComplex z, IComplex c, int maxIterations){
+    private BinaryOperator<IComplex> binaryOperator = (prev, z) -> (prev.multiply(prev).add(z));
+
+
+    public GeneralisationJulia(IComplex z, IComplex c, int maxIterations){
         this.z = z;
         this.c = c;
         this.maxIterations = maxIterations;
@@ -23,8 +27,8 @@ public class EnsembleJulia implements SuitesStrategy {
     @Override
     public IComplex calculateNextTerm(IComplex previous) {
         if (previous == null){
-            return (z.multiply(z)).add(c);
+            return binaryOperator.apply(z, c);
         }
-        return (previous.multiply(previous)).add(c);
+        return binaryOperator.apply(previous, c);
     }
 }

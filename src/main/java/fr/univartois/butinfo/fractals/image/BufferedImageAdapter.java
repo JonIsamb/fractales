@@ -35,8 +35,13 @@ public class BufferedImageAdapter implements IFractalImage{
 
     @Override
     public void saveAs(String path) throws IOException {
-        String[] splitted = path.split("\\.");
-        String formatName = splitted[splitted.length - 1];
-        ImageIO.write(image, formatName, new File(path));
+        try{
+            String[] splitted = path.split("\\.");
+            String formatName = splitted[splitted.length - 1];
+            ImageIO.write(image, formatName, new File(path));
+        }catch (IOException e){
+            System.out.println("Mauvais chemin du fichier");
+        }
+
     }
 }

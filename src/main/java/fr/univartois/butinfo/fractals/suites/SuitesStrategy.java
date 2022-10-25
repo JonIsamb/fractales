@@ -5,6 +5,4 @@ import fr.univartois.butinfo.fractals.complex.IComplex;
 
 public interface SuitesStrategy {
     IComplex calculateNextTerm(IComplex previous);
-
-
 }

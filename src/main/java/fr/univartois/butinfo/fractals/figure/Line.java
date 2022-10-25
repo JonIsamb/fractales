@@ -1,15 +1,18 @@
 package fr.univartois.butinfo.fractals.figure;
 
 import fr.univartois.butinfo.fractals.complex.Complex;
+import fr.univartois.butinfo.fractals.complex.IComplex;
+
+import java.awt.*;
 
 public class Line implements IFigure{
 
-    private Object color;
-    private Complex posx;
-    private Complex posy;
+    private Color color;
+    private IComplex posx;
+    private IComplex posy;
 
 
-    public Line(Object color, Complex posx, Complex posy) {
+    public Line(Color color, IComplex posx, IComplex posy) {
         this.color = color;
         this.posx = posx;
         this.posy = posy;

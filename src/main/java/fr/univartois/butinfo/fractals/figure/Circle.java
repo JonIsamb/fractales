@@ -1,13 +1,16 @@
 package fr.univartois.butinfo.fractals.figure;
 
 import fr.univartois.butinfo.fractals.complex.Complex;
+import fr.univartois.butinfo.fractals.complex.IComplex;
+
+import java.awt.*;
 
 public class Circle implements IFigure{
-    private Object color;
-    private Complex pos;
+    private Color color;
+    private IComplex pos;
     private int radius;
 
-    public Circle(Object color, Complex pos, int radius) {
+    public Circle(Color color, IComplex pos, int radius) {
         this.color = color;
         this.pos = pos;
         this.radius = radius;

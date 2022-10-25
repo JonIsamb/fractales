@@ -30,11 +30,13 @@ public class BufferedImageAdapter implements IFractalImage{
 
     @Override
     public void setColor(int row, int column, Color color) {
-        image.setRGB(row,column,color);
+        image.setRGB(row,column,color.getRGB());
     }
 
     @Override
     public void saveAs(String path) throws IOException {
-        ImageIO.write(image, "SVG", new File(path));
+        String[] splitted = path.split("\\.");
+        String formatName = splitted[splitted.length - 1];
+        ImageIO.write(image, formatName, new File(path));
     }
 }

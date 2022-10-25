@@ -2,18 +2,20 @@ package fr.univartois.butinfo.fractals.suites;
 
 import fr.univartois.butinfo.fractals.complex.IComplex;
 
-public class EnsembleMandelbrot implements SuitesStrategy {
+import java.util.Iterator;
+import java.util.Spliterator;
+import java.util.function.Consumer;
+
+public class EnsembleMandelbrot implements SuitesStrategy, Iterable<IComplex> {
 
     private IComplex z;
 
     private int maxIterations;
 
-    private SuiteIterator iterator;
 
     public EnsembleMandelbrot(IComplex z, int maxIterations){
         this.z = z;
         this.maxIterations = maxIterations;
-        this.iterator = new SuiteIterator(this, maxIterations);
     }
 
     @Override
@@ -23,4 +25,15 @@ public class EnsembleMandelbrot implements SuitesStrategy {
         }
         return (previous.multiply(previous)).add(z);
     }
+
+    @Override
+    public Iterator<IComplex> iterator() {
+        return new SuiteIterator(this, maxIterations);
+    }
+
+    @Override
+    public void forEach(Consumer<? super IComplex> action) {
+        Iterable.super.forEach(action);
+    }
+
 }

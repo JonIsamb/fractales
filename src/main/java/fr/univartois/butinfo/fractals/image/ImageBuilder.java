@@ -11,6 +11,7 @@ import fr.univartois.butinfo.fractals.suites.SuiteIterator;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class ImageBuilder {
 
@@ -68,7 +69,7 @@ public class ImageBuilder {
         this.iterationsMax = iterationsMax;
     }
 
-    public IFractalImage getResult(){
+    public IFractalImage getResult() throws IOException {
         IFractalImage image = new BufferedImageAdapter(width, height);
         Plan plan = new Plan(height, width);
         IComplex c = new Complex(-0.4,0.6);

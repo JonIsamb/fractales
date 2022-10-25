@@ -40,7 +40,7 @@ public class BufferedImageAdapter implements IFractalImage{
             String formatName = splitted[splitted.length - 1];
             ImageIO.write(image, formatName, new File(path));
         }catch (IOException e){
-            System.out.println("Mauvais chemin du fichier");
+            throw e;
         }
 
     }

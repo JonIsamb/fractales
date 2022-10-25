@@ -19,11 +19,11 @@ public class ImageBuilder {
 
     private int height;
 
-    private int scale;
+    private double scale;
 
-    private int focusX;
+    private double focusX;
 
-    private int focusY;
+    private double focusY;
 
     private String suite;
 
@@ -41,15 +41,15 @@ public class ImageBuilder {
         this.height = height;
     }
 
-    public void setScale(int scale) {
+    public void setScale(double scale) {
         this.scale = scale;
     }
 
-    public void setFocusX(int focusX) {
+    public void setFocusX(double focusX) {
         this.focusX = focusX;
     }
 
-    public void setFocusY(int focusY) {
+    public void setFocusY(double focusY) {
         this.focusY = focusY;
     }
 

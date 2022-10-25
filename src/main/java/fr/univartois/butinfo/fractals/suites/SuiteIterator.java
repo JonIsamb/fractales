@@ -52,4 +52,8 @@ public class SuiteIterator implements Iterator<IComplex> {
     public void forEachRemaining(Consumer<? super IComplex> action) {
         Iterator.super.forEachRemaining(action);
     }
+
+    public int getNbIterations(){
+        return this.nbIterations;
+    }
 }

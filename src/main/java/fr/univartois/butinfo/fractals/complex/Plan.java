@@ -1,6 +1,6 @@
 package fr.univartois.butinfo.fractals.complex;
 
-public abstract class Plan implements IPlan{
+public class Plan implements IPlan{
     private int height;
     private int width;
 

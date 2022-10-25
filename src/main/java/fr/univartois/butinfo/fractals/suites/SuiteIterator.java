@@ -4,9 +4,11 @@ import fr.univartois.butinfo.fractals.complex.Complex;
 import fr.univartois.butinfo.fractals.complex.IComplex;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.function.Consumer;
 
-public class SuiteIterator implements ComplexIterator {
+public class SuiteIterator implements Iterator<IComplex> {
     private SuitesStrategy strategy;
 
     private int nbIterations = 0;
@@ -30,7 +32,7 @@ public class SuiteIterator implements ComplexIterator {
     }
 
     @Override
-    public IComplex getNext(){
+    public IComplex next() {
         if (!hasNext()){
             return null;
         }
@@ -42,19 +44,12 @@ public class SuiteIterator implements ComplexIterator {
     }
 
     @Override
-    public IComplex get(int indice) {
-        IComplex complex = null;
-        int compteur = 0;
-        while(compteur < indice){
-            complex = strategy.calculateNextTerm(complex);
-            compteur++;
-        }
-        return complex;
+    public void remove() {
+        Iterator.super.remove();
     }
 
     @Override
-    public void reset(){
-        nbIterations = 0;
-        current = null;
+    public void forEachRemaining(Consumer<? super IComplex> action) {
+        Iterator.super.forEachRemaining(action);
     }
 }

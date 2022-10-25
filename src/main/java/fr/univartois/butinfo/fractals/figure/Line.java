@@ -18,7 +18,7 @@ public class Line implements IFigure{
 
     @Override
     public String repr() {
-        return "<line x1="+posx.getRealPart()+" x2="+posx.getImaginaryPart()+" y1="+posy.getRealPart()+" y2="+posy.getImaginaryPart()+" stroke=black stroke-width=5/>";
+        return "<line x1="+posx.getRealPart()+" x2="+posx.getImaginaryPart()+" y1="+posy.getRealPart()+" y2="+posy.getImaginaryPart()+" stroke ="+color+" stroke-width=5/>";
 
 
     }

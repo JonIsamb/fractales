@@ -15,6 +15,6 @@ public class Circle implements IFigure{
 
     @Override
     public String repr() {
-        return "<circle cx="+pos.getRealPart()+" cy="+pos.getImaginaryPart()+" r="+radius+"/>";
+        return "<circle cx="+pos.getRealPart()+" cy="+pos.getImaginaryPart()+" r="+radius+" stroke ="+color+"/>";
     }
 }

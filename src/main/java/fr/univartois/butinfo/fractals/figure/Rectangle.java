@@ -20,7 +20,7 @@ public class Rectangle implements IFigure{
 
     @Override
     public String repr() {
-        return "<rect x="+pos.getRealPart()+" y="+pos.getImaginaryPart()+" width="+width+" height="+width+"/>";
+        return "<rect x='"+pos.getRealPart()+"' y='"+pos.getImaginaryPart()+"' width='"+width+"' height='"+height+"'/>";
 
 
     }

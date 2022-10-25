@@ -1,32 +1,29 @@
 package fr.univartois.butinfo.fractals.suites;
 
-import fr.univartois.butinfo.fractals.complex.Complex;
 import fr.univartois.butinfo.fractals.complex.IComplex;
 
 import java.util.Iterator;
+import java.util.Spliterator;
 import java.util.function.Consumer;
 
-public class EnsembleJulia implements SuitesStrategy, Iterable<IComplex> {
+public class EnsembleMandelbrot implements SuitesStrategy, Iterable<IComplex> {
 
     private IComplex z;
-
-    private IComplex c;
 
     private int maxIterations;
 
 
-    public EnsembleJulia(IComplex z, IComplex c, int maxIterations){
+    public EnsembleMandelbrot(IComplex z, int maxIterations){
         this.z = z;
-        this.c = c;
         this.maxIterations = maxIterations;
     }
 
     @Override
     public IComplex calculateNextTerm(IComplex previous) {
         if (previous == null){
-            return (z.multiply(z)).add(c);
+            return (z.multiply(z)).add(z);
         }
-        return (previous.multiply(previous)).add(c);
+        return (previous.multiply(previous)).add(z);
     }
 
     @Override
@@ -38,4 +35,5 @@ public class EnsembleJulia implements SuitesStrategy, Iterable<IComplex> {
     public void forEach(Consumer<? super IComplex> action) {
         Iterable.super.forEach(action);
     }
+
 }

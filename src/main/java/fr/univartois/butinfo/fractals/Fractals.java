@@ -16,6 +16,7 @@
 
 package fr.univartois.butinfo.fractals;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 
 import fr.cril.cli.ClassParser;
@@ -26,6 +27,7 @@ import fr.cril.cli.annotations.Args;
 import fr.cril.cli.annotations.Description;
 import fr.cril.cli.annotations.LongName;
 import fr.cril.cli.annotations.ShortName;
+import fr.univartois.butinfo.fractals.image.ImageBuilder;
 
 /**
  * La classe Fractals permet de générer des fractales depuis la ligne de commande.
@@ -69,7 +71,7 @@ public final class Fractals {
     @LongName("scale")
     @Description("Spécifie l'échelle à appliquer sur l'image.")
     @Args(value = 1, names = "ratio")
-    private double scale;
+    private String scale;
 
     /**
      * L'option spécifiant le point central de l'image sur l'axe des abscisses.
@@ -78,7 +80,7 @@ public final class Fractals {
     @LongName("focus-x")
     @Description("Spécifie le point central de l'image sur l'axe des abscisses.")
     @Args(value = 1, names = "real")
-    private double focusX;
+    private String focusX;
 
     /**
      * L'option spécifiant le point central de l'image sur l'axe des ordonnées.
@@ -87,7 +89,7 @@ public final class Fractals {
     @LongName("focus-y")
     @Description("Spécifie le point central de l'image sur l'axe des ordonnées.")
     @Args(value = 1, names = "real")
-    private double foxusY;
+    private String focusY;
 
     /**
      * L'option spécifiant le nom de la fractale à générer.
@@ -173,8 +175,18 @@ public final class Fractals {
     /**
      * Crée la fractale demandée dans la ligne de commande.
      */
-    public void buildFractal() {
-        // TODO Ajoutez ici le code pour utiliser votre implantation et créer la fractale.
+    public void buildFractal() throws IOException {
+        ImageBuilder builder = new ImageBuilder();
+        builder.setHeight(height);
+        builder.setWidth(width);
+        builder.setFocusX(Double.parseDouble(focusX));
+        builder.setFocusY(Double.parseDouble(focusY));
+        builder.setPalette(paletteName);
+        builder.setScale(Double.parseDouble(scale));
+        builder.setIterationsMax(nbIterations);
+        builder.setPathToFile(outputFile);
+        builder.setSuite(fractaleName);
+        builder.getResult();
     }
 
     /**
@@ -182,7 +194,7 @@ public final class Fractals {
      *
      * @param args Les arguments de la ligne de commande.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Fractals fractals = new Fractals();
         fractals.parseCliArguments(args);
         fractals.buildFractal();

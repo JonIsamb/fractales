@@ -15,6 +15,9 @@ bin
 # Divers.
 .DS_Store
 
+# Fichiers d'IntelliJ
 .idea
 
+# Gradle
 gradle
+

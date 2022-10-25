@@ -4,57 +4,52 @@ import fr.univartois.butinfo.fractals.complex.Complex;
 import fr.univartois.butinfo.fractals.complex.IComplex;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.function.Consumer;
 
-public class SuiteIterator implements ComplexIterator {
+public class SuiteIterator implements Iterator<IComplex> {
     private SuitesStrategy strategy;
 
     private int nbIterations = 0;
 
-    private int iterationsLimit;
+    private int maxIterations;
 
-    private List<IComplex> complexes = new ArrayList<>();
+    private IComplex current;
 
-
-    public SuiteIterator(SuitesStrategy strategy, int iterationsLimit){
+    public SuiteIterator(SuitesStrategy strategy, int maxIterations){
         this.strategy = strategy;
-        this.iterationsLimit = iterationsLimit;
+        this.maxIterations = maxIterations;
     }
 
     @Override
     public boolean hasNext() {
-        if (nbIterations < iterationsLimit) {
-            if (nbIterations == 0) {
-                return (strategy.getFirstElement().abs() <= 2);
-            } else {
-                return (complexes.get(nbIterations).abs() <= 2);
-            }
+        if (nbIterations <= maxIterations) {
+            return (current.abs() <= 2);
         } else {
             return false;
         }
     }
 
     @Override
-    public IComplex getNext(){
+    public IComplex next() {
         if (!hasNext()){
             return null;
         }
 
-        IComplex next;
-        if (nbIterations == 0){
-            next = strategy.getFirstElement();
-        } else {
-            IComplex previous = complexes.get(nbIterations);
-            next = strategy.calculateNextTerm(previous);
-        }
+        this.current = strategy.calculateNextTerm(this.current);
 
-        complexes.add(next);
         nbIterations++;
-        return next;
+        return this.current;
     }
 
     @Override
-    public void reset(){
-        nbIterations = 0;
+    public void remove() {
+        Iterator.super.remove();
+    }
+
+    @Override
+    public void forEachRemaining(Consumer<? super IComplex> action) {
+        Iterator.super.forEachRemaining(action);
     }
 }

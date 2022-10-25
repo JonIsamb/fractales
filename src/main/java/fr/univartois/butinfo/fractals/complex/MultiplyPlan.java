@@ -1,19 +1,19 @@
 package fr.univartois.butinfo.fractals.complex;
 
 public class MultiplyPlan extends Plan implements IPlan {
-    private IComplex cons;
+    private int zoom;
     private IPlan plan;
 
 
-    public MultiplyPlan(IComplex cons, IPlan plan, int height, int width) {
+    public MultiplyPlan(int zoom, IPlan plan, int height, int width) {
 
         super(height,width);
-        this.cons = cons;
+        this.zoom= zoom;
         this.plan = plan;
     }
 
     @Override
     public IComplex asComplex(int row, int column) {
-        return plan.asComplex(row,column).multiply(cons);
+        return plan.asComplex(row,column).multiply(zoom);
     }
 }

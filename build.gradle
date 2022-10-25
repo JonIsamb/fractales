@@ -26,6 +26,9 @@ dependencies {
     testImplementation group: 'org.junit.platform', name: 'junit-platform-launcher', version: '1.6.0'
     testImplementation group: 'org.junit.platform', name: 'junit-platform-runner', version: '1.6.0'
 }
+test {
+    useJUnitPlatform()
+}
 
 // Le nom de la classe contenant la méthode "main".
 application {

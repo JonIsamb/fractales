@@ -19,7 +19,13 @@ package fr.univartois.butinfo.fractals.complex;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
+import fr.univartois.butinfo.fractals.figure.FigureDecorator;
+import fr.univartois.butinfo.fractals.figure.IFigure;
+import fr.univartois.butinfo.fractals.figure.Line;
+import fr.univartois.butinfo.fractals.figure.Rectangle;
 import org.junit.jupiter.api.Test;
+
+import java.awt.*;
 
 /**
  * La classe IComplexTest permet de tester votre implémentation de l'interface
@@ -326,6 +332,16 @@ class IComplexTest {
 
         IComplex z = createComplex(2, 2);
         assertEquals("2.0 + 2.0i" , z.toString());
+    }
+    @Test
+    void testFigure(){
+        IComplex complex = new Complex(1,1);
+        IFigure rect = new Line(Color.BLACK,complex,complex);
+        String rec = rect.repr();
+        System.out.println(FigureDecorator.translation(rec,complex));
+        rec = FigureDecorator.translation(rec,complex);
+        System.out.println(FigureDecorator.Rotate(rec,15));
+        System.out.println(FigureDecorator.scale(rec,15));
     }
 
 }

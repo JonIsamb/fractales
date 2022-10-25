@@ -1,12 +1,17 @@
 package fr.univartois.butinfo.fractals.complex;
 
-public class SumPlan implements IPlan{
-    private Complex cons;
+public class SumPlan extends Plan implements IPlan{
+    private IComplex cons;
     private IPlan plan;
 
-    public SumPlan(Complex cons, IPlan plan) {
+
+
+    public SumPlan(int height, int width, IComplex cons, IPlan plan) {
+
+        super(height,width);
         this.cons = cons;
         this.plan = plan;
+
     }
 
     @Override

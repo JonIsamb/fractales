@@ -13,6 +13,8 @@ import fr.univartois.butinfo.fractals.suites.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ImageBuilder {
 
@@ -85,35 +87,67 @@ public class ImageBuilder {
             paletteColor = new PaletteMagenta();
         }
 
+        List<String> nomSuite = new ArrayList<String>();
+        nomSuite.add("j");
+        nomSuite.add("m");
+        nomSuite.add("gj");
+        nomSuite.add("gm");
+        if (nomSuite.contains(suite)){
+            for(int x = 0; x<width; x++){
+                for(int y = 0; y<height; y++){
+                    IComplex point = scaledPlan.asComplex(x, y);
 
-        for(int x = 0; x<width; x++){
-            for(int y = 0; y<height; y++){
-                IComplex point = scaledPlan.asComplex(x, y);
+                    SuitesStrategy typeSuite;
+                    if ("j".equals(suite)) {
+                        typeSuite = new EnsembleJulia(point, c, iterationsMax);
+                    } else if ("m".equals(suite)){
+                        typeSuite = new EnsembleMandelbrot(point, iterationsMax);
+                    } else if ("gj".equals(suite)){
+                        typeSuite = new GeneralisationJulia(point, c, iterationsMax, (prev, comp) -> (prev.divide(comp)));
+                    } else if ("gm".equals(suite)) {
+                        typeSuite = new GeneralisationMandelbrot(point, iterationsMax, (prev, comp) -> ((prev.multiply(prev).multiply(prev)).add(prev)));
+                    } else {
+                        typeSuite = new EnsembleJulia(point, c, iterationsMax);
+                    }
 
-                SuitesStrategy typeSuite;
-                if ("j".equals(suite)) {
-                    typeSuite = new EnsembleJulia(point, c, iterationsMax);
-                } else if ("m".equals(suite)){
-                    typeSuite = new EnsembleMandelbrot(point, iterationsMax);
-                } else if ("gj".equals(suite)){
-                    typeSuite = new GeneralisationJulia(point, c, iterationsMax, (prev, comp) -> (prev.divide(comp)));
-                } else if ("gm".equals(suite)){
-                    typeSuite = new GeneralisationMandelbrot(point, iterationsMax, (prev, comp) -> ((prev.multiply(prev).multiply(prev)).add(prev)));
-                } else {
-                    typeSuite = new EnsembleJulia(point, c, iterationsMax);
+                    SuiteIterator iterator = (SuiteIterator) typeSuite.iterator();
+                    while(iterator.hasNext()){
+                        iterator.next();
+                    }
+                    int nbIteration = iterator.getNbIterations();
+
+                    Color color = paletteColor.getPalette(nbIteration, iterationsMax);
+                    Pixel pixel = image.getPixel(x, y);
+                    pixel.setColor(color);
                 }
+            }
+        } else {
+            for(int x = 0; x<width; x++){
+                for(int y = 0; y<height; y++){
+                    IComplex point = scaledPlan.asComplex(x, y);
+                    IPointPlan pointPlan = new IComplexAdapter(point);
 
-                SuiteIterator iterator = (SuiteIterator) typeSuite.iterator();
-                while(iterator.hasNext()){
-                    iterator.next();
+                    ISuitesChaotique typeSuite;
+                    if ("cc".equals(suite)) {
+                        typeSuite = new SuiteCirculaire(pointPlan, iterationsMax);
+                    } else {
+                        typeSuite = new SuiteFeigenbaum(pointPlan, iterationsMax);
+                    }
+
+                    SuiteChaotiqueIterator iterator = (SuiteChaotiqueIterator) typeSuite.iterator();
+                    while(iterator.hasNext()){
+                        iterator.next();
+                    }
+                    int nbIteration = iterator.getNbIterations();
+
+                    Color color = paletteColor.getPalette(nbIteration, iterationsMax);
+                    Pixel pixel = image.getPixel(x, y);
+                    pixel.setColor(color);
                 }
-                int nbIteration = iterator.getNbIterations();
-
-                Color color = paletteColor.getPalette(nbIteration, iterationsMax);
-                Pixel pixel = image.getPixel(x, y);
-                pixel.setColor(color);
             }
         }
+
+
         image.saveAs(pathToFile);
         return image;
     }

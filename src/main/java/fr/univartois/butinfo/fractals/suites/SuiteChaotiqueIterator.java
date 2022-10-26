@@ -11,10 +11,10 @@ import java.util.Iterator;
  */
 public class SuiteChaotiqueIterator implements Iterator<IPointPlan> {
 
-    private static int nbIterations=0;
+    private int nbIterations=0;
     private int nbMaxIteration;
     private IPointPlan precedent;
-    private ISuitesChaotique suite;
+    private SuitesChaotiqueStrategy suite;
 
     /**
      * Constructeur de la classe SuiteChaotiqueIterator qui permettra la création d'une instance
@@ -23,11 +23,16 @@ public class SuiteChaotiqueIterator implements Iterator<IPointPlan> {
      * @param precedent instance de l'interface IPointPlan qui est un point du plan
      * @param nbMaxIteration int qui indique le nombre maximum d'iteration
      */
-    public SuiteChaotiqueIterator(ISuitesChaotique suite,IPointPlan precedent,int nbMaxIteration){
+    public SuiteChaotiqueIterator(SuitesChaotiqueStrategy suite,IPointPlan precedent,int nbMaxIteration){
         this.suite=suite;
         this.nbMaxIteration=nbMaxIteration;
         this.precedent=precedent;
     }
+
+    public int getNbIterations(){
+        return this.nbIterations;
+    }
+
 
     /**
      * Declaration de la methode hasNext qui verifiera si il y a un prochain point du plan

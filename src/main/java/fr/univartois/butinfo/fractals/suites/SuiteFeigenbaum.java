@@ -1,11 +1,13 @@
 package fr.univartois.butinfo.fractals.suites;
 
+import java.util.Iterator;
+
 /**
  * Creation de la classe SuiteFeigenbaum qui implementera l'interface ISuiteChaotique
  * et etends la classe abstraite SuiteChaotique
  * @author Bonsigne Amaury
  */
-public class SuiteFeigenbaum extends SuiteChaotique implements ISuitesChaotique{
+public class SuiteFeigenbaum extends SuiteChaotique implements SuitesChaotiqueStrategy{
 
     /**
      * Constructeur de la classe SuiteFeigenbaum
@@ -24,5 +26,10 @@ public class SuiteFeigenbaum extends SuiteChaotique implements ISuitesChaotique{
     @Override
     public double getNext(IPointPlan point) {
         return (point.getX()* point.getY())*(1-point.getY());
+    }
+
+    @Override
+    public Iterator<IPointPlan> iterator(){
+        return new SuiteChaotiqueIterator(this,this.premier,this.nbMaxIterations);
     }
 }

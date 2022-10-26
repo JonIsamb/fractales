@@ -1,2 +1,0 @@
-package fr.univartois.butinfo.fractals.suites;public class CouleurPixelChaotique {
-}

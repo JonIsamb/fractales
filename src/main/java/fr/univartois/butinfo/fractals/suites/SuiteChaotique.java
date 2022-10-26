@@ -7,9 +7,9 @@ import java.util.Iterator;
  * et l'interface Iterable qui permettera l'iteration de la suite
  * @author Bonsigne Amaury
  */
-public abstract class SuiteChaotique implements ISuitesChaotique,Iterable<IPointPlan>{
-    private IPointPlan premier;
-    private int nbMaxIterations;
+public abstract class SuiteChaotique implements SuitesChaotiqueStrategy{
+    IPointPlan premier;
+    int nbMaxIterations;
 
     /**
      * Constructeur de la classe abstraite SuiteChaotique

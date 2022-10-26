@@ -24,8 +24,10 @@ public class SuiteIterator implements Iterator<IComplex> {
 
     @Override
     public boolean hasNext() {
-        if (nbIterations <= maxIterations) {
-            return (current.abs() <= 2);
+        if (nbIterations == 0){
+            return true;
+        } else if (nbIterations <= maxIterations) {
+            return (this.current.abs() <= 2);
         } else {
             return false;
         }

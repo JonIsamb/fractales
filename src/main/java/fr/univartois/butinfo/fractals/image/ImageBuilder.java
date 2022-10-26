@@ -2,6 +2,7 @@ package fr.univartois.butinfo.fractals.image;
 
 
 import fr.univartois.butinfo.fractals.color.IColor;
+import fr.univartois.butinfo.fractals.color.PaletteGray;
 import fr.univartois.butinfo.fractals.color.PaletteMagenta;
 import fr.univartois.butinfo.fractals.complex.*;
 import fr.univartois.butinfo.fractals.suites.EnsembleJulia;

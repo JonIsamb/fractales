@@ -90,7 +90,7 @@ public class ImageBuilder {
         } else if ("orange".equals(palette)){
             paletteColor = new PaletteOrange();
         } else {
-            paletteColor = new PaletteMagenta();
+            paletteColor = new PaletteGray();
         }
 
         for(int x = 0; x<width; x++){

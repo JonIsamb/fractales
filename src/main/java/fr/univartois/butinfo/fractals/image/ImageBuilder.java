@@ -8,6 +8,7 @@ import fr.univartois.butinfo.fractals.complex.IComplex;
 import fr.univartois.butinfo.fractals.complex.MultiplyPlan;
 import fr.univartois.butinfo.fractals.complex.Plan;
 import fr.univartois.butinfo.fractals.suites.EnsembleJulia;
+import fr.univartois.butinfo.fractals.suites.EnsembleMandelbrot;
 import fr.univartois.butinfo.fractals.suites.SuiteIterator;
 
 import java.awt.*;
@@ -71,7 +72,7 @@ public class ImageBuilder {
     }
 
     public IFractalImage getResult() throws IOException {
-        IFractalImage image = new BufferedImageAdapter(width, height);
+        IFractalImage image = new BufferedImageAdapter(height, width);
         Plan plan = new Plan(height, width);
         MultiplyPlan scaledPlan = new MultiplyPlan(scale, plan, height, width);
         IComplex c = new Complex(-0.4,0.6);
@@ -86,7 +87,8 @@ public class ImageBuilder {
                     iterator.next();
                 }
                 int nbIteration = iterator.getNbIterations();
-                Color color = paletteColor.getColor(nbIteration);
+
+                Color color = paletteColor.getPalette(nbIteration, iterationsMax);
                 Pixel pixel = image.getPixel(x, y);
                 pixel.setColor(color);
             }

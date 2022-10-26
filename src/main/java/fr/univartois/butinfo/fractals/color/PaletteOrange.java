@@ -13,7 +13,7 @@ public class PaletteOrange implements IColor {
     }
 
     @Override
-    public Color getColor(int nbIteration) {
+    public Color getPalette(int nbIteration, int iterationsMax) {
         return new Color(color.getRed()/(nbIteration/NB_NUANCE),color.getGreen()/(nbIteration/NB_NUANCE),color.getBlue()/(nbIteration/NB_NUANCE));
     }
 

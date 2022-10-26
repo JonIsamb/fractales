@@ -2,7 +2,7 @@ package fr.univartois.butinfo.fractals.color;
 
 import java.awt.*;
 
-public class ColorDecorator implements IColor{
+public abstract class ColorDecorator implements IColor{
     private Color color;
 
     public ColorDecorator(Color color){
@@ -10,9 +10,7 @@ public class ColorDecorator implements IColor{
     }
 
     @Override
-    public Color getColor(int nbIteration) {
-        return color;
-    }
+    public abstract Color getPalette(int nbIteration, int iterationsMax);
 
     public Color getColor() {
         return color;

@@ -11,7 +11,7 @@ import java.util.Iterator;
  */
 public class SuiteChaotiqueIterator implements Iterator<IPointPlan> {
 
-    private static int nbIterations=0;
+    private int nbIterations=0;
     private int nbMaxIteration;
     private IPointPlan precedent;
     private SuitesChaotiqueStrategy suite;
@@ -28,6 +28,11 @@ public class SuiteChaotiqueIterator implements Iterator<IPointPlan> {
         this.nbMaxIteration=nbMaxIteration;
         this.precedent=precedent;
     }
+
+    public int getNbIterations(){
+        return this.nbIterations;
+    }
+
 
     /**
      * Declaration de la methode hasNext qui verifiera si il y a un prochain point du plan

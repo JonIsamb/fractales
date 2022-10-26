@@ -78,9 +78,9 @@ public class ImageBuilder {
         IFractalImage image = new BufferedImageAdapter(height, width);
 
         Plan plan = new Plan(height, width);
-        MultiplyPlan scaledPlan = new MultiplyPlan(scale, plan, height, width);
         IComplex center = new Complex(focusX, focusY);
-        SumPlan centeredPlan = new SumPlan(height, width, center, scaledPlan);
+        SumPlan centeredPlan = new SumPlan(height, width, center, plan);
+        MultiplyPlan scaledPlan = new MultiplyPlan(scale, centeredPlan, height, width);
 
         IComplex c = new Complex(-0.4,0.6);
 
@@ -95,7 +95,7 @@ public class ImageBuilder {
 
         for(int x = 0; x<width; x++){
             for(int y = 0; y<height; y++){
-                IComplex point = centeredPlan.asComplex(x, y);
+                IComplex point = scaledPlan.asComplex(x, y);
 
                 SuitesStrategy typeSuite;
                 if ("j".equals(suite)) {

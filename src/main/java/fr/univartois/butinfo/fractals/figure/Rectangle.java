@@ -7,13 +7,13 @@ import java.awt.*;
 
 public class Rectangle implements IFigure{
 
-    private Color color;
+    private String color;
     private IComplex pos;
 
     private int width;
     private int height;
 
-    public Rectangle(Color color, IComplex pos, int width, int height) {
+    public Rectangle(String color, IComplex pos, int width, int height) {
         this.color = color;
         this.pos = pos;
         this.width=width;
@@ -23,7 +23,7 @@ public class Rectangle implements IFigure{
 
     @Override
     public String repr() {
-        return "<rect x='"+pos.getRealPart()+"' y='"+pos.getImaginaryPart()+"' width='"+width+"' height='"+height+"'stroke ="+color+"/>";
+        return "<rect x='"+pos.getRealPart()+"' y='"+pos.getImaginaryPart()+"' width='"+width+"' height='"+height+"'stroke ='"+color+"'/>";
 
 
     }

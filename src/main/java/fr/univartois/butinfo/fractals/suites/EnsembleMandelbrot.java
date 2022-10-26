@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 
-public class EnsembleMandelbrot implements SuitesStrategy, Iterable<IComplex> {
+public class EnsembleMandelbrot implements SuitesStrategy {
 
     private IComplex z;
 
@@ -31,9 +31,6 @@ public class EnsembleMandelbrot implements SuitesStrategy, Iterable<IComplex> {
         return new SuiteIterator(this, maxIterations);
     }
 
-    @Override
-    public void forEach(Consumer<? super IComplex> action) {
-        Iterable.super.forEach(action);
-    }
+
 
 }

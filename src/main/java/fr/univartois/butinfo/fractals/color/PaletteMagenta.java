@@ -15,7 +15,7 @@ public class PaletteMagenta implements IColor {
     public Color getPalette(int nbIteration, int iterationsMax) {
         float nbIte = (float) nbIteration-1;
         float maxIte = (float) iterationsMax;
-        float ratio = (float) nbIte/maxIte;
+        float ratio = nbIte/maxIte;
         return new Color(ratio, (float) 0., ratio);
     }
 

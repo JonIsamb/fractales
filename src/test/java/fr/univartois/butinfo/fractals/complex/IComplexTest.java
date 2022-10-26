@@ -342,8 +342,8 @@ class IComplexTest {
     void testFigure(){
         IComplex complex = new Complex(100,100);
 
-        IFigure rect = new Circle("BLACK",complex,5);
-        IFigure rect2 = new Rectangle("blue", complex, 5, 5);
+        IFigure rect = new Circle(Color.BLACK,complex,5);
+        IFigure rect2 = new Rectangle(Color.BLUE, complex, 5, 5);
 
 
 
@@ -360,6 +360,9 @@ class IComplexTest {
         System.out.println(listeFigure.repr());
         listeFigure.remove(rect2);
         System.out.println(listeFigure.repr());
+        System.out.println(Color.cyan.getRed());
+        System.out.println(Color.cyan.getBlue());
+        System.out.println(Color.cyan.getGreen());
         /**
          *
          * test svg
@@ -368,16 +371,21 @@ class IComplexTest {
         FigureMethode test = new FigureMethode() {
             @Override
             public PrintWriter figure(PrintWriter write, int iterate) {
-                IFigure rect = new Rectangle("blue", complex, 50, 50);
+                IFigure rect = new Rectangle(Color.blue, complex, 50, 50);
                 IComplex complex2 = new Complex(100,200);
                 IComplex complex3 = new Complex(300,100);
-                IFigure circle = new Circle("red",complex2,50);
-                IFigure line = new Line("orange",complex3,complex2);
-                IFigure triangle = new Triangle("purple",complex,complex2,complex3);
+                IFigure circle = new Circle(Color.red,complex2,50);
+                IFigure line = new Line(Color.orange,complex3,complex2);
+                IFigure triangle = new Triangle(Color.PINK,complex,complex2,complex3);
+                String tri = triangle.repr();
+                tri = FigureDecorator.Rotate(tri,45);
+                tri = FigureDecorator.translation(tri, complex3);
+                tri=FigureDecorator.scale(tri,2);
                 write.write(line.repr());
                 write.write(circle.repr());
                 write.write(rect.repr());
                 write.write(triangle.repr());
+                write.write(tri);
 
                 return write;
             }

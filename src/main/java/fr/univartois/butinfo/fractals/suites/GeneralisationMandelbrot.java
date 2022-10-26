@@ -2,6 +2,7 @@ package fr.univartois.butinfo.fractals.suites;
 
 import fr.univartois.butinfo.fractals.complex.IComplex;
 
+import java.util.Iterator;
 import java.util.function.BinaryOperator;
 
 public class GeneralisationMandelbrot implements SuitesStrategy{
@@ -19,7 +20,7 @@ public class GeneralisationMandelbrot implements SuitesStrategy{
         this.z = z;
         this.maxIterations = maxIterations;
         this.iterator = new SuiteIterator(this, maxIterations);
-        this.binaryOperator = (prev, comp) -> (prev.multiply(prev).add(comp));
+        this.binaryOperator = binaryOperator;
     }
 
     @Override
@@ -28,5 +29,10 @@ public class GeneralisationMandelbrot implements SuitesStrategy{
             return binaryOperator.apply(z, z);
         }
         return binaryOperator.apply(previous, z);
+    }
+
+    @Override
+    public Iterator<IComplex> iterator() {
+        return new SuiteIterator(this, maxIterations);
     }
 }

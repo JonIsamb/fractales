@@ -19,6 +19,7 @@ package fr.univartois.butinfo.fractals.complex;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
+import fr.univartois.butinfo.fractals.figure.*;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -326,6 +327,25 @@ class IComplexTest {
 
         IComplex z = createComplex(2, 2);
         assertEquals("2.0 + 2.0i" , z.toString());
+    }
+    @Test
+    void testFigure(){
+        IComplex complex = new Complex(1,1);
+        IFigure rect = new Circle("BLACK",complex,5);
+        IFigure rect2 = new Rectangle("blue", complex, 5, 5);
+        String rec = rect.repr();
+        System.out.println(FigureDecorator.translation(rec,complex));
+        rec = FigureDecorator.translation(rec,complex);
+        System.out.println(FigureDecorator.Rotate(rec,15));
+        System.out.println(FigureDecorator.scale(rec,15));
+        FigureComposite listeFigure = new FigureComposite();
+        listeFigure.add(rect);
+        listeFigure.add(rect2);
+        listeFigure.add(rect);
+        System.out.println(listeFigure.repr());
+        listeFigure.remove(rect2);
+        System.out.println(listeFigure.repr());
+
     }
 
 }

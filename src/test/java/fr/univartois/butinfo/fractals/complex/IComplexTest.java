@@ -30,6 +30,7 @@ import fr.univartois.butinfo.fractals.figure.Rectangle;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
+import java.io.PrintWriter;
 
 /**
  * La classe IComplexTest permet de tester votre implémentation de l'interface
@@ -339,7 +340,7 @@ class IComplexTest {
     }
     @Test
     void testFigure(){
-        IComplex complex = new Complex(1,1);
+        IComplex complex = new Complex(100,100);
 
         IFigure rect = new Circle("BLACK",complex,5);
         IFigure rect2 = new Rectangle("blue", complex, 5, 5);
@@ -359,6 +360,34 @@ class IComplexTest {
         System.out.println(listeFigure.repr());
         listeFigure.remove(rect2);
         System.out.println(listeFigure.repr());
+        /**
+         *
+         * test svg
+         *
+         */
+        FigureMethode test = new FigureMethode() {
+            @Override
+            public PrintWriter figure(PrintWriter write, int iterate) {
+                IFigure rect = new Rectangle("blue", complex, 50, 50);
+                IComplex complex2 = new Complex(100,200);
+                IComplex complex3 = new Complex(300,100);
+                IFigure circle = new Circle("red",complex2,50);
+                IFigure line = new Line("orange",complex3,complex2);
+                IFigure triangle = new Triangle("purple",complex,complex2,complex3);
+                write.write(line.repr());
+                write.write(circle.repr());
+                write.write(rect.repr());
+                write.write(triangle.repr());
+
+                return write;
+            }
+        };
+        String file = "images/test.svg";
+        test.methode(file,1,1080,1920);
+
+
+
+
 
     }
 

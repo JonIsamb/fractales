@@ -22,7 +22,7 @@ public class Triangle implements IFigure{
 
     @Override
     public String repr() {
-        return "<polygon points='"+posx.getRealPart()+", "+posx.getImaginaryPart()+" "+posy.getRealPart()+", "+posy.getImaginaryPart()+" "+posz.getRealPart()+", "+posz.getImaginaryPart()+"'stroke ='"+color+"'/>";
+        return "<polygon points='"+posx.getRealPart()+", "+posx.getImaginaryPart()+" "+posy.getRealPart()+", "+posy.getImaginaryPart()+" "+posz.getRealPart()+", "+posz.getImaginaryPart()+"' fill ='"+color+"'/>";
 
 
 

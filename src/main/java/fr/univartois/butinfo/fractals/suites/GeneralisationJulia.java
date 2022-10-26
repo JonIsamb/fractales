@@ -2,6 +2,7 @@ package fr.univartois.butinfo.fractals.suites;
 
 import fr.univartois.butinfo.fractals.complex.IComplex;
 
+import java.util.Iterator;
 import java.util.function.BinaryOperator;
 
 public class GeneralisationJulia implements SuitesStrategy {
@@ -31,5 +32,10 @@ public class GeneralisationJulia implements SuitesStrategy {
             return binaryOperator.apply(z, c);
         }
         return binaryOperator.apply(previous, c);
+    }
+
+    @Override
+    public Iterator<IComplex> iterator() {
+        return new SuiteIterator(this, maxIterations);
     }
 }

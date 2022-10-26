@@ -12,13 +12,14 @@ public class GeneralisationMandelbrot implements SuitesStrategy{
 
     private SuiteIterator iterator;
 
-    private BinaryOperator<IComplex> binaryOperator = (prev, z) -> (prev.multiply(prev).add(z));
+    private BinaryOperator<IComplex> binaryOperator;
 
 
-    public GeneralisationMandelbrot(IComplex z, int maxIterations){
+    public GeneralisationMandelbrot(IComplex z, int maxIterations, BinaryOperator<IComplex> binaryOperator){
         this.z = z;
         this.maxIterations = maxIterations;
         this.iterator = new SuiteIterator(this, maxIterations);
+        this.binaryOperator = (prev, comp) -> (prev.multiply(prev).add(comp));
     }
 
     @Override

@@ -14,13 +14,14 @@ public class GeneralisationJulia implements SuitesStrategy {
 
     private SuiteIterator iterator;
 
-    private BinaryOperator<IComplex> binaryOperator = (prev, z) -> (prev.multiply(prev).add(z));
+    private BinaryOperator<IComplex> binaryOperator;
 
 
-    public GeneralisationJulia(IComplex z, IComplex c, int maxIterations){
+    public GeneralisationJulia(IComplex z, IComplex c, int maxIterations, BinaryOperator<IComplex> binaryOperator){
         this.z = z;
         this.c = c;
         this.maxIterations = maxIterations;
+        this.binaryOperator = binaryOperator;
         this.iterator = new SuiteIterator(this, maxIterations);
     }
 

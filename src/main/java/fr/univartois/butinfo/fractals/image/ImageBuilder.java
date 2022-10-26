@@ -96,9 +96,9 @@ public class ImageBuilder {
                 } else if ("m".equals(suite)){
                     typeSuite = new EnsembleMandelbrot(point, iterationsMax);
                 } else if ("gj".equals(suite)){
-                    typeSuite = new GeneralisationJulia(point, c, iterationsMax, (prev, comp) -> (prev.multiply(prev).add(comp)));
+                    typeSuite = new GeneralisationJulia(point, c, iterationsMax, (prev, comp) -> (prev.divide(comp)));
                 } else if ("gm".equals(suite)){
-                    typeSuite = new GeneralisationMandelbrot(point, iterationsMax, (prev, comp) -> (prev.multiply(prev).add(comp)));
+                    typeSuite = new GeneralisationMandelbrot(point, iterationsMax, (prev, comp) -> ((prev.multiply(prev).multiply(prev)).add(prev)));
                 } else {
                     typeSuite = new EnsembleJulia(point, c, iterationsMax);
                 }

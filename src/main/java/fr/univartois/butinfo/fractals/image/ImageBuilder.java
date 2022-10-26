@@ -3,10 +3,7 @@ package fr.univartois.butinfo.fractals.image;
 
 import fr.univartois.butinfo.fractals.color.IColor;
 import fr.univartois.butinfo.fractals.color.PaletteMagenta;
-import fr.univartois.butinfo.fractals.complex.Complex;
-import fr.univartois.butinfo.fractals.complex.IComplex;
-import fr.univartois.butinfo.fractals.complex.MultiplyPlan;
-import fr.univartois.butinfo.fractals.complex.Plan;
+import fr.univartois.butinfo.fractals.complex.*;
 import fr.univartois.butinfo.fractals.suites.EnsembleJulia;
 import fr.univartois.butinfo.fractals.suites.EnsembleMandelbrot;
 import fr.univartois.butinfo.fractals.suites.SuiteIterator;
@@ -73,14 +70,19 @@ public class ImageBuilder {
 
     public IFractalImage getResult() throws IOException {
         IFractalImage image = new BufferedImageAdapter(height, width);
+
         Plan plan = new Plan(height, width);
         MultiplyPlan scaledPlan = new MultiplyPlan(scale, plan, height, width);
+        IComplex center = new Complex(focusX, focusY);
+        SumPlan centeredPlan = new SumPlan(height, width, center, scaledPlan);
+
         IComplex c = new Complex(-0.4,0.6);
+
         IColor paletteColor = new PaletteMagenta();
 
         for(int x = 0; x<width; x++){
             for(int y = 0; y<height; y++){
-                IComplex point = scaledPlan.asComplex(x, y);
+                IComplex point = centeredPlan.asComplex(x, y);
                 EnsembleJulia typeSuite = new EnsembleJulia(point, c, iterationsMax);
                 SuiteIterator iterator = (SuiteIterator) typeSuite.iterator();
                 while(iterator.hasNext()){

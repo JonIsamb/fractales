@@ -18,6 +18,6 @@ public class Circle implements IFigure{
 
     @Override
     public String repr() {
-        return "<circle cx="+pos.getRealPart()+" cy="+pos.getImaginaryPart()+" r="+radius+" stroke ="+color+"/>";
+        return "<circle cx='"+pos.getRealPart()+"' cy='"+pos.getImaginaryPart()+"' r='"+radius+"' fill ='rgb("+color.getRed()+","+color.getGreen()+","+color.getBlue()+")'/>";
     }
 }

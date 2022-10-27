@@ -2,7 +2,12 @@ package fr.univartois.butinfo.fractals.image;
 
 
 import fr.univartois.butinfo.fractals.color.IColor;
+import fr.univartois.butinfo.fractals.color.PaletteGray;
 import fr.univartois.butinfo.fractals.color.PaletteMagenta;
+import fr.univartois.butinfo.fractals.complex.*;
+import fr.univartois.butinfo.fractals.suites.EnsembleJulia;
+import fr.univartois.butinfo.fractals.suites.EnsembleMandelbrot;
+import fr.univartois.butinfo.fractals.suites.SuiteIterator;
 import fr.univartois.butinfo.fractals.color.PaletteOrange;
 import fr.univartois.butinfo.fractals.complex.Complex;
 import fr.univartois.butinfo.fractals.complex.IComplex;
@@ -74,8 +79,12 @@ public class ImageBuilder {
 
     public IFractalImage getResult() throws IOException {
         IFractalImage image = new BufferedImageAdapter(height, width);
+
         Plan plan = new Plan(height, width);
-        MultiplyPlan scaledPlan = new MultiplyPlan(scale, plan, height, width);
+        IComplex center = new Complex(focusX, focusY);
+        SumPlan centeredPlan = new SumPlan(height, width, center, plan);
+        MultiplyPlan scaledPlan = new MultiplyPlan(scale, centeredPlan, height, width);
+
         IComplex c = new Complex(-0.4,0.6);
 
         IColor paletteColor;
@@ -84,7 +93,7 @@ public class ImageBuilder {
         } else if ("orange".equals(palette)){
             paletteColor = new PaletteOrange();
         } else {
-            paletteColor = new PaletteMagenta();
+            paletteColor = new PaletteGray();
         }
 
         List<String> nomSuite = new ArrayList<String>();
@@ -160,8 +169,6 @@ public class ImageBuilder {
                 }
             }
         }
-
-
         image.saveAs(pathToFile);
         return image;
     }

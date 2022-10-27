@@ -19,13 +19,18 @@ package fr.univartois.butinfo.fractals.complex;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
+
+import fr.univartois.butinfo.fractals.figure.*;
+
 import fr.univartois.butinfo.fractals.figure.FigureDecorator;
 import fr.univartois.butinfo.fractals.figure.IFigure;
 import fr.univartois.butinfo.fractals.figure.Line;
 import fr.univartois.butinfo.fractals.figure.Rectangle;
+
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
+import java.io.PrintWriter;
 
 /**
  * La classe IComplexTest permet de tester votre implémentation de l'interface
@@ -335,13 +340,63 @@ class IComplexTest {
     }
     @Test
     void testFigure(){
-        IComplex complex = new Complex(1,1);
-        IFigure rect = new Line(Color.BLACK,complex,complex);
+        IComplex complex = new Complex(100,100);
+
+        IFigure rect = new Circle(Color.BLACK,complex,5);
+        IFigure rect2 = new Rectangle(Color.BLUE, complex, 5, 5);
+
+
+
         String rec = rect.repr();
         System.out.println(FigureDecorator.translation(rec,complex));
         rec = FigureDecorator.translation(rec,complex);
         System.out.println(FigureDecorator.Rotate(rec,15));
         System.out.println(FigureDecorator.scale(rec,15));
+
+        FigureComposite listeFigure = new FigureComposite();
+        listeFigure.add(rect);
+        listeFigure.add(rect2);
+        listeFigure.add(rect);
+        System.out.println(listeFigure.repr());
+        listeFigure.remove(rect2);
+        System.out.println(listeFigure.repr());
+        System.out.println(Color.cyan.getRed());
+        System.out.println(Color.cyan.getBlue());
+        System.out.println(Color.cyan.getGreen());
+        /**
+         *
+         * test svg
+         *
+         */
+        FigureMethode test = new FigureMethode() {
+            @Override
+            public PrintWriter figure(PrintWriter write, int iterate) {
+                IFigure rect = new Rectangle(Color.blue, complex, 50, 50);
+                IComplex complex2 = new Complex(100,200);
+                IComplex complex3 = new Complex(300,100);
+                IFigure circle = new Circle(Color.red,complex2,50);
+                IFigure line = new Line(Color.orange,complex3,complex2);
+                IFigure triangle = new Triangle(Color.PINK,complex,complex2,complex3);
+                String tri = triangle.repr();
+                tri = FigureDecorator.Rotate(tri,45);
+                tri = FigureDecorator.translation(tri, complex3);
+                tri=FigureDecorator.scale(tri,2);
+                write.write(line.repr());
+                write.write(circle.repr());
+                write.write(rect.repr());
+                write.write(triangle.repr());
+                write.write(tri);
+
+                return write;
+            }
+        };
+        String file = "images/test.svg";
+        test.methode(file,1,1080,1920);
+
+
+
+
+
     }
 
 }

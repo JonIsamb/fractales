@@ -1,15 +1,12 @@
 package fr.univartois.butinfo.fractals.color;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
 
-public class PaletteOrange implements IColor {
+public class PaletteGray implements IColor {
     private Color color;
-    public static final int NB_NUANCE=20;
 
-    public PaletteOrange(){
-        this.color=Color.ORANGE;
+    public PaletteGray(){
+        this.color=Color.GRAY;
     }
 
     @Override
@@ -17,7 +14,7 @@ public class PaletteOrange implements IColor {
         float nbIte = (float) nbIteration-1;
         float maxIte = (float) iterationsMax;
         float ratio = nbIte/maxIte;
-        return new Color(1, ratio, (float) 0.);
+        return new Color(ratio, ratio, ratio);
     }
 
     @Override

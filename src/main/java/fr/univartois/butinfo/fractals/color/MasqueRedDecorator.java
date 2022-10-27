@@ -8,7 +8,7 @@ public class MasqueRedDecorator extends ColorDecorator{
         super(color);
     }
     @Override
-    public Color getColor(int nbIteration) {
+    public Color getPalette(int nbIteration, int iterationsMax) {
         return this.getColor();
     }
     @Override

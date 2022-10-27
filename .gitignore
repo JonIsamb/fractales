@@ -17,6 +17,7 @@ bin
 
 # Fichiers d'IntelliJ
 .idea
+.idea/misc.xml
 
 # Gradle
 gradle

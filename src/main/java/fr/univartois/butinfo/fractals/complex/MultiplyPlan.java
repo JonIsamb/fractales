@@ -1,12 +1,11 @@
 package fr.univartois.butinfo.fractals.complex;
 
 public class MultiplyPlan extends Plan implements IPlan {
-    private int zoom;
+    private double zoom;
     private IPlan plan;
 
 
-    public MultiplyPlan(int zoom, IPlan plan, int height, int width) {
-
+    public MultiplyPlan(double zoom, IPlan plan, int height, int width) {
         super(height,width);
         this.zoom= zoom;
         this.plan = plan;

@@ -2,12 +2,18 @@ package fr.univartois.butinfo.fractals.image;
 
 
 import fr.univartois.butinfo.fractals.color.IColor;
+import fr.univartois.butinfo.fractals.color.PaletteGray;
 import fr.univartois.butinfo.fractals.color.PaletteMagenta;
+import fr.univartois.butinfo.fractals.complex.*;
+import fr.univartois.butinfo.fractals.suites.EnsembleJulia;
+import fr.univartois.butinfo.fractals.suites.EnsembleMandelbrot;
+import fr.univartois.butinfo.fractals.suites.SuiteIterator;
+import fr.univartois.butinfo.fractals.color.PaletteOrange;
 import fr.univartois.butinfo.fractals.complex.Complex;
 import fr.univartois.butinfo.fractals.complex.IComplex;
+import fr.univartois.butinfo.fractals.complex.MultiplyPlan;
 import fr.univartois.butinfo.fractals.complex.Plan;
-import fr.univartois.butinfo.fractals.suites.EnsembleJulia;
-import fr.univartois.butinfo.fractals.suites.SuiteIterator;
+import fr.univartois.butinfo.fractals.suites.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -70,21 +76,48 @@ public class ImageBuilder {
     }
 
     public IFractalImage getResult() throws IOException {
-        IFractalImage image = new BufferedImageAdapter(width, height);
+        IFractalImage image = new BufferedImageAdapter(height, width);
+
         Plan plan = new Plan(height, width);
+        IComplex center = new Complex(focusX, focusY);
+        SumPlan centeredPlan = new SumPlan(height, width, center, plan);
+        MultiplyPlan scaledPlan = new MultiplyPlan(scale, centeredPlan, height, width);
+
         IComplex c = new Complex(-0.4,0.6);
-        IColor paletteColor = new PaletteMagenta();
+
+        IColor paletteColor;
+        if ("magenta".equals(palette)){
+            paletteColor = new PaletteMagenta();
+        } else if ("orange".equals(palette)){
+            paletteColor = new PaletteOrange();
+        } else {
+            paletteColor = new PaletteGray();
+        }
 
         for(int x = 0; x<width; x++){
             for(int y = 0; y<height; y++){
-                IComplex point = plan.asComplex(x, y);
-                EnsembleJulia typeSuite = new EnsembleJulia(point, c, iterationsMax);
+                IComplex point = scaledPlan.asComplex(x, y);
+
+                SuitesStrategy typeSuite;
+                if ("j".equals(suite)) {
+                    typeSuite = new EnsembleJulia(point, c, iterationsMax);
+                } else if ("m".equals(suite)){
+                    typeSuite = new EnsembleMandelbrot(point, iterationsMax);
+                } else if ("gj".equals(suite)){
+                    typeSuite = new GeneralisationJulia(point, c, iterationsMax, (prev, comp) -> (prev.multiply(prev).add(comp)));
+                } else if ("gm".equals(suite)){
+                    typeSuite = new GeneralisationMandelbrot(point, iterationsMax, (prev, comp) -> (prev.multiply(prev).add(comp)));
+                } else {
+                    typeSuite = new EnsembleJulia(point, c, iterationsMax);
+                }
+
                 SuiteIterator iterator = (SuiteIterator) typeSuite.iterator();
                 while(iterator.hasNext()){
                     iterator.next();
                 }
                 int nbIteration = iterator.getNbIterations();
-                Color color = paletteColor.getColor(nbIteration);
+
+                Color color = paletteColor.getPalette(nbIteration, iterationsMax);
                 Pixel pixel = image.getPixel(x, y);
                 pixel.setColor(color);
             }

@@ -8,9 +8,9 @@ import java.awt.*;
 public class Circle implements IFigure{
     private Color color;
     private IComplex pos;
-    private int radius;
+    private double radius;
 
-    public Circle(Color color, IComplex pos, int radius) {
+    public Circle(Color color, IComplex pos, double radius) {
         this.color = color;
         this.pos = pos;
         this.radius = radius;

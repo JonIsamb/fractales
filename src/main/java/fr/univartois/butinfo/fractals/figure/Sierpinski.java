@@ -13,20 +13,19 @@ public class Sierpinski extends FigureMethode {
         super(height,width);
     }
     public PrintWriter loop(PrintWriter writer, Plan plan, Color color, int nb_max){
-        int height = plan.getHeight();
-        int width = plan.getWidth();
+        double height = plan.getHeight();
+        double width = plan.getWidth();
         IComplex pos = new Complex(width/3,height/3);
         IFigure carre = new Rectangle(color,pos,width/3,height/3);
         writer.write(carre.repr());
 
         color = color.darker();
         IComplex origin = new Complex(0,0);
-        int taille = width;
-        draw(writer, height/3, width/3,color, carre, nb_max,0, origin, taille);
+        draw(writer, height/3, width/3,color, carre, nb_max,0, origin, width);
         return writer;
 
     }
-    public void draw(PrintWriter writer, int height, int width, Color color, IFigure carre, int nb_max, int cons, IComplex origin, int taille) {
+    public void draw(PrintWriter writer, double height, double width, Color color, IFigure carre, int nb_max, int cons, IComplex origin, double taille) {
         if (cons < nb_max){
             height = height/3;
             width = width/3;

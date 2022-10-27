@@ -10,10 +10,10 @@ public class Rectangle implements IFigure{
     private Color color;
     private IComplex pos;
 
-    private int width;
-    private int height;
+    private double width;
+    private double height;
 
-    public Rectangle(Color color, IComplex pos, int width, int height) {
+    public Rectangle(Color color, IComplex pos, double width, double height) {
         this.color = color;
         this.pos = pos;
         this.width=width;

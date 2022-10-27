@@ -20,4 +20,9 @@ public class Circle implements IFigure{
     public String repr() {
         return "<circle cx='"+pos.getRealPart()+"' cy='"+pos.getImaginaryPart()+"' r='"+radius+"' fill ='rgb("+color.getRed()+","+color.getGreen()+","+color.getBlue()+")'/>";
     }
+
+    @Override
+    public IComplex getPos() {
+        return pos;
+    }
 }

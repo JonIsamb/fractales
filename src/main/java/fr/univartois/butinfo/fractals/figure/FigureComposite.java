@@ -1,5 +1,7 @@
 package fr.univartois.butinfo.fractals.figure;
 
+import fr.univartois.butinfo.fractals.complex.IComplex;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +20,12 @@ public class FigureComposite implements IFigure{
         }
         return stringbuilder.toString();
     }
+
+    @Override
+    public IComplex getPos() {
+        return null;
+    }
+
     public void add(IFigure fig){
         figures.add(fig);
 

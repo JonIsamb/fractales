@@ -20,10 +20,13 @@ public class Rectangle implements IFigure{
         this.height=height;
     }
 
+    public IComplex getPos() {
+        return pos;
+    }
 
     @Override
     public String repr() {
-        return "<rect x='"+pos.getRealPart()+"' y='"+pos.getImaginaryPart()+"' width='"+width+"' height='"+height+"' fill ='rgb("+color.getRed()+","+color.getGreen()+","+color.getBlue()+")'/>";
+        return "<rect x='"+pos.getRealPart()+"' y='"+pos.getImaginaryPart()+"' width='"+width+"' height='"+height+"' fill ='rgb("+color.getRed()+","+color.getGreen()+","+color.getBlue()+")'/>\n";
 
 
     }

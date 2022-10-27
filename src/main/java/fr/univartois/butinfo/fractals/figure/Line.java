@@ -25,4 +25,12 @@ public class Line implements IFigure{
 
 
     }
+
+    @Override
+    public IComplex getPos() {
+        return posx;
+    }
+    public IComplex getPosy(){
+        return posy;
+    }
 }

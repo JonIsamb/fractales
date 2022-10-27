@@ -25,7 +25,7 @@ public class SuiteFeigenbaum extends SuiteChaotique implements SuitesChaotiqueSt
      */
     @Override
     public double getNext(IPointPlan point) {
-        return (point.getX()* point.getY())*(1-point.getY());
+        return (point.getX()*point.getY())*(1-point.getY());
     }
 
     @Override

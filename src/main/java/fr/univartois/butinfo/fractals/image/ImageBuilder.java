@@ -143,6 +143,7 @@ public class ImageBuilder {
                         iterator.next();
                     }
                     int nbIteration = iterator.getNbIterations();
+                    //System.out.println(nbIteration);
 
                     Color color = paletteColor.getPalette(nbIteration, iterationsMax);
 

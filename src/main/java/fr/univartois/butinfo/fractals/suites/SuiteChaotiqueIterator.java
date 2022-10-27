@@ -76,7 +76,7 @@ public class SuiteChaotiqueIterator implements Iterator<IPointPlan> {
 
         boolean converge = true;
         for (int i=0; i < this.points.size()-1; i++){
-            if (points.get(i).distancePoint(points.get(i+1)) > e){
+            if (points.get(i+1).distancePoint(points.get(i)) > e){
                 converge = false;
             }
         }

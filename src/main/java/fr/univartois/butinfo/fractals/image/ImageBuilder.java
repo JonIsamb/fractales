@@ -144,7 +144,7 @@ public class ImageBuilder {
                     if ("cc".equals(suite)) {
                         typeSuite = new SuiteCirculaire(pointPlan, iterationsMax, 20, 0.3F);
                     } else {
-                        typeSuite = new SuiteFeigenbaum(pointPlan, iterationsMax, 20, 0.3F);
+                        typeSuite = new SuiteFeigenbaum(pointPlan, iterationsMax, 5, 0.1F);
                     }
 
                     SuiteChaotiqueIterator iterator = (SuiteChaotiqueIterator) typeSuite.iterator();

@@ -18,6 +18,8 @@ import fr.univartois.butinfo.fractals.suites.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ImageBuilder {
 
@@ -94,32 +96,77 @@ public class ImageBuilder {
             paletteColor = new PaletteGray();
         }
 
-        for(int x = 0; x<width; x++){
-            for(int y = 0; y<height; y++){
-                IComplex point = scaledPlan.asComplex(x, y);
+        List<String> nomSuite = new ArrayList<String>();
+        nomSuite.add("j");
+        nomSuite.add("m");
+        nomSuite.add("gj");
+        nomSuite.add("gm");
+        if (nomSuite.contains(suite)){
+            for(int x = 0; x<width; x++){
+                for(int y = 0; y<height; y++){
+                    IComplex point = scaledPlan.asComplex(x, y);
 
-                SuitesStrategy typeSuite;
-                if ("j".equals(suite)) {
-                    typeSuite = new EnsembleJulia(point, c, iterationsMax);
-                } else if ("m".equals(suite)){
-                    typeSuite = new EnsembleMandelbrot(point, iterationsMax);
-                } else if ("gj".equals(suite)){
-                    typeSuite = new GeneralisationJulia(point, c, iterationsMax, (prev, comp) -> (prev.multiply(prev).add(comp)));
-                } else if ("gm".equals(suite)){
-                    typeSuite = new GeneralisationMandelbrot(point, iterationsMax, (prev, comp) -> (prev.multiply(prev).add(comp)));
-                } else {
-                    typeSuite = new EnsembleJulia(point, c, iterationsMax);
+                    SuitesStrategy typeSuite;
+                    if ("j".equals(suite)) {
+                        typeSuite = new EnsembleJulia(point, c, iterationsMax);
+                    } else if ("m".equals(suite)){
+                        typeSuite = new EnsembleMandelbrot(point, iterationsMax);
+                    } else if ("gj".equals(suite)){
+                        typeSuite = new GeneralisationJulia(point, c, iterationsMax, (prev, comp) -> (prev.divide(comp)));
+                    } else if ("gm".equals(suite)) {
+                        typeSuite = new GeneralisationMandelbrot(point, iterationsMax, (prev, comp) -> ((prev.multiply(prev).multiply(prev)).add(prev)));
+                    } else {
+                        typeSuite = new EnsembleJulia(point, c, iterationsMax);
+                    }
+
+                    SuiteIterator iterator = (SuiteIterator) typeSuite.iterator();
+                    while(iterator.hasNext()){
+                        iterator.next();
+                    }
+                    int nbIteration = iterator.getNbIterations();
+
+                    Color color = paletteColor.getPalette(nbIteration, iterationsMax);
+
+                    Pixel pixel = image.getPixel(x, y);
+                    pixel.setColor(color);
                 }
+            }
+        } else {
+            for(int x = 0; x<width; x++){
+                for(int y = 0; y<height; y++){
+                    IComplex point = scaledPlan.asComplex(x, y);
+                    //System.out.println(point.getRealPart() + "   " + point.getImaginaryPart());
+                    IPointPlan pointPlan = new IComplexAdapter(point);
+                    //System.out.println(pointPlan.getComplex().getRealPart() + "   " + pointPlan.getComplex().getImaginaryPart());
 
-                SuiteIterator iterator = (SuiteIterator) typeSuite.iterator();
-                while(iterator.hasNext()){
-                    iterator.next();
+
+                    SuitesChaotiqueStrategy typeSuite;
+                    if ("cc".equals(suite)) {
+                        typeSuite = new SuiteCirculaire(pointPlan, iterationsMax, 20, 0.3F);
+                    } else {
+                        typeSuite = new SuiteFeigenbaum(pointPlan, iterationsMax, 5, 0.1F);
+                    }
+
+                    SuiteChaotiqueIterator iterator = (SuiteChaotiqueIterator) typeSuite.iterator();
+                    while(iterator.hasNext()){
+                        iterator.next();
+                    }
+                    int nbIteration = iterator.getNbIterations();
+                    //System.out.println(nbIteration);
+
+                    Color color = paletteColor.getPalette(nbIteration, iterationsMax);
+
+                    IPointPlan precedent = iterator.getPrecedent();
+
+                    double xPixel = precedent.getX();
+                    double yPixel = precedent.getY();
+                    if ((yPixel < height/2) && (yPixel > -height/2)) {
+                        //System.out.println(xPixel + " " + yPixel);
+                        //System.out.println("oui");
+                        Pixel pixel = scaledPlan.asPixel(precedent, image);
+                        pixel.setColor(color);
+                    }
                 }
-                int nbIteration = iterator.getNbIterations();
-
-                Color color = paletteColor.getPalette(nbIteration, iterationsMax);
-                Pixel pixel = image.getPixel(x, y);
-                pixel.setColor(color);
             }
         }
         image.saveAs(pathToFile);

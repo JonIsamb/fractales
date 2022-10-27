@@ -14,8 +14,8 @@ public class SuiteFeigenbaum extends SuiteChaotique implements SuitesChaotiqueSt
      * @param premier Paramètre de type IPointPlan qui est un point du plan
      * @param nbMaxIterations Nombre maximum d'iterations de la suite
      */
-    public SuiteFeigenbaum(IPointPlan premier, int nbMaxIterations) {
-        super(premier, nbMaxIterations);
+    public SuiteFeigenbaum(IPointPlan premier, int nbMaxIterations, int k, float e) {
+        super(premier, nbMaxIterations, k, e);
     }
 
     /**
@@ -30,6 +30,6 @@ public class SuiteFeigenbaum extends SuiteChaotique implements SuitesChaotiqueSt
 
     @Override
     public Iterator<IPointPlan> iterator(){
-        return new SuiteChaotiqueIterator(this,this.premier,this.nbMaxIterations);
+        return new SuiteChaotiqueIterator(this,this.premier,this.nbMaxIterations, k, e);
     }
 }

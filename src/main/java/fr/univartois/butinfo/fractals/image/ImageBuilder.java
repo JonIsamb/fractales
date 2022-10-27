@@ -117,6 +117,7 @@ public class ImageBuilder {
                     int nbIteration = iterator.getNbIterations();
 
                     Color color = paletteColor.getPalette(nbIteration, iterationsMax);
+
                     Pixel pixel = image.getPixel(x, y);
                     pixel.setColor(color);
                 }
@@ -127,11 +128,11 @@ public class ImageBuilder {
                     IComplex point = scaledPlan.asComplex(x, y);
                     IPointPlan pointPlan = new IComplexAdapter(point);
 
-                    ISuitesChaotique typeSuite;
+                    SuitesChaotiqueStrategy typeSuite;
                     if ("cc".equals(suite)) {
-                        typeSuite = new SuiteCirculaire(pointPlan, iterationsMax);
+                        typeSuite = new SuiteCirculaire(pointPlan, iterationsMax, 20, 0.3F);
                     } else {
-                        typeSuite = new SuiteFeigenbaum(pointPlan, iterationsMax);
+                        typeSuite = new SuiteFeigenbaum(pointPlan, iterationsMax, 20, 0.3F);
                     }
 
                     SuiteChaotiqueIterator iterator = (SuiteChaotiqueIterator) typeSuite.iterator();
@@ -141,6 +142,7 @@ public class ImageBuilder {
                     int nbIteration = iterator.getNbIterations();
 
                     Color color = paletteColor.getPalette(nbIteration, iterationsMax);
+
                     Pixel pixel = image.getPixel(x, y);
                     pixel.setColor(color);
                 }

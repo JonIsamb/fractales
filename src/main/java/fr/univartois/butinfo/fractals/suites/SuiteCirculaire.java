@@ -13,8 +13,8 @@ public class SuiteCirculaire extends SuiteChaotique implements SuitesChaotiqueSt
      * @param premier Paramètre de type IPointPlan qui est un point du plan
      * @param nbMaxIterations Nombre maximum d'iterations de la suite
      */
-    public SuiteCirculaire(IPointPlan premier, int nbMaxIterations) {
-        super(premier, nbMaxIterations);
+    public SuiteCirculaire(IPointPlan premier, int nbMaxIterations, int k, float e) {
+        super(premier, nbMaxIterations, k, e);
     }
 
     /**
@@ -24,12 +24,13 @@ public class SuiteCirculaire extends SuiteChaotique implements SuitesChaotiqueSt
      */
     @Override
     public double getNext(IPointPlan point) {
-        return point.getY()+(point.getX()*Math.sin(2*Math.PI* point.getY())/2*Math.PI)+(float)1/3;
+        double tiers = (double) 1 / (double) 3;
+        return point.getY()+(point.getX()*Math.sin(2*Math.PI* point.getY())/2*Math.PI)+tiers;
     }
 
     @Override
     public Iterator<IPointPlan> iterator(){
-        return new SuiteChaotiqueIterator(this,this.premier,this.nbMaxIterations);
+        return new SuiteChaotiqueIterator(this,this.premier,this.nbMaxIterations, k, e);
     }
 
 }

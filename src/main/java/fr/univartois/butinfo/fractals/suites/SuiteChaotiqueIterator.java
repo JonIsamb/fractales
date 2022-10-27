@@ -50,6 +50,10 @@ public class SuiteChaotiqueIterator implements Iterator<IPointPlan> {
         return this.precedent.getY();
     }
 
+    public IPointPlan getPrecedent(){
+        return this.precedent;
+    }
+
 
     /**
      * Declaration de la methode hasNext qui verifiera si il y a un prochain point du plan

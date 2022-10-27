@@ -126,7 +126,10 @@ public class ImageBuilder {
             for(int x = 0; x<width; x++){
                 for(int y = 0; y<height; y++){
                     IComplex point = scaledPlan.asComplex(x, y);
+                    //System.out.println(point.getRealPart() + "   " + point.getImaginaryPart());
                     IPointPlan pointPlan = new IComplexAdapter(point);
+                    //System.out.println(pointPlan.getComplex().getRealPart() + "   " + pointPlan.getComplex().getImaginaryPart());
+
 
                     SuitesChaotiqueStrategy typeSuite;
                     if ("cc".equals(suite)) {
@@ -143,8 +146,16 @@ public class ImageBuilder {
 
                     Color color = paletteColor.getPalette(nbIteration, iterationsMax);
 
-                    Pixel pixel = image.getPixel(x, y);
-                    pixel.setColor(color);
+                    IPointPlan precedent = iterator.getPrecedent();
+
+                    double xPixel = precedent.getX();
+                    double yPixel = precedent.getY();
+                    if ((yPixel < height/2) && (yPixel > -height/2)) {
+                        //System.out.println(xPixel + " " + yPixel);
+                        //System.out.println("oui");
+                        Pixel pixel = scaledPlan.asPixel(precedent, image);
+                        pixel.setColor(color);
+                    }
                 }
             }
         }

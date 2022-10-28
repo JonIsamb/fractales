@@ -7,6 +7,9 @@ import fr.univartois.butinfo.fractals.suites.IPointPlan;
 
 public class SumPlan implements IPlan{
     private IComplex cons;
+    /**
+     * Declaration de l'attribut plan instance de IPlan
+     */
     private IPlan plan;
 
 
@@ -16,6 +19,12 @@ public class SumPlan implements IPlan{
         this.plan = plan;
     }
 
+    /**
+     * Methode asComplex qui transforme un pixel en complex
+     * @param row Abcisse
+     * @param column ordonée
+     * @return Un complexe
+     */
     @Override
     public IComplex asComplex(int row, int column) {
         return plan.asComplex(row,column).add(cons);

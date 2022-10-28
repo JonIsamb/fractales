@@ -7,6 +7,9 @@ import fr.univartois.butinfo.fractals.suites.IPointPlan;
 
 public class MultiplyPlan implements IPlan {
     private double zoom;
+    /**
+     * déclaration d'une instance de IPlan plan
+     */
     private IPlan plan;
 
 
@@ -15,6 +18,12 @@ public class MultiplyPlan implements IPlan {
         this.plan = plan;
     }
 
+    /**
+     * Implementation de la méthode asComplex qui transforme une colonne et une rangée en complexe
+     * @param row Abcisse
+     * @param column Ordonné
+     * @return Un complexe
+     */
     @Override
     public IComplex asComplex(int row, int column) {
         return plan.asComplex(row,column).multiply(zoom);

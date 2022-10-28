@@ -6,7 +6,7 @@
 - Amaury Bonsigne  
 
 ### Explication des patrons de conception  
-- **Question 5 et 6** : Décorateur
+- **Question 5 et 6** : On a utlisé un Décorateur afin d'affecter dynamiquement le plan
 - **Question 7** : Une stratégie a était utilisé pour pouvoir representer
 les différentes suites qui avaient la même base.
 - **Question 8** : Nous avons choisi d'utiliser un itérateur afin
@@ -29,7 +29,6 @@ pouvoir traiter celles-ci comme des objets individuels
 - **Question 31** : Nous avons choisi un patron méthode pour cette question car
 elle permet de mettre le squelette d’un algorithme dans la classe mère, 
 mais laisse les sous-classes redéfinir certaines étapes de l’algorithme sans changer sa structure.
-- **Question 33** :
 
 ### Repartition des tâches :
 
@@ -49,3 +48,4 @@ mais laisse les sous-classes redéfinir certaines étapes de l’algorithme sans
   - Diagramme de bifurcation
   - Création d'images
   - Choix Couleur
+  - Documentation

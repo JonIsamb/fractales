@@ -9,6 +9,8 @@ public class GeneralisationMandelbrot implements SuitesStrategy{
 
     private IComplex z;
 
+    private IComplex c;
+
     private int maxIterations;
 
     private SuiteIterator iterator;
@@ -16,8 +18,9 @@ public class GeneralisationMandelbrot implements SuitesStrategy{
     private BinaryOperator<IComplex> binaryOperator;
 
 
-    public GeneralisationMandelbrot(IComplex z, int maxIterations, BinaryOperator<IComplex> binaryOperator){
+    public GeneralisationMandelbrot(IComplex z, IComplex c, int maxIterations, BinaryOperator<IComplex> binaryOperator){
         this.z = z;
+        this.c = c;
         this.maxIterations = maxIterations;
         this.iterator = new SuiteIterator(this, maxIterations);
         this.binaryOperator = binaryOperator;
@@ -26,9 +29,9 @@ public class GeneralisationMandelbrot implements SuitesStrategy{
     @Override
     public IComplex calculateNextTerm(IComplex previous) {
         if (previous == null){
-            return binaryOperator.apply(z, z);
+            return binaryOperator.apply(z, c);
         }
-        return binaryOperator.apply(previous, z);
+        return binaryOperator.apply(previous, c);
     }
 
     @Override

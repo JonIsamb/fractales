@@ -29,7 +29,7 @@ pouvoir traiter celles-ci comme des objets individuels
 cela permet de mettre le squelette d’un algorithme dans la classe mère, 
 mais laisse les sous-classes redéfinir certaines étapes de l’algorithme sans changer sa structure.
 
-### Repartition des tâches :
+### Répartition des tâches :
 
 - ***Jonathan*** :
   - Suites Complexes et leurs implémentations
@@ -48,3 +48,28 @@ mais laisse les sous-classes redéfinir certaines étapes de l’algorithme sans
   - Création d'images
   - Choix Couleur
   - Documentation
+
+### A savoir :
+
+Vous pouvez retrouver des images de fractales dans le dossier ./imagesDemandees.
+Elles ont été générées avec les paramètres selon nous "optimaux" pour améliorer le rendu.
+
+Le diagramme de classe se trouve dans le fichier README.md à la racine du projet.
+
+Pour utiliser les scripts, vous devez d'abord lancer la tâche jar de Gradle.
+Ensuite, vous pourrez lancer les scripts depuis le répertoire scripts.
+Tous les scripts (hormis pour le tapis de Sierpinski) prennent 3 paramètres : le focus en X, le focus en Y et le nom de la palette de couleur que vous souhaitez utiliser.
+
+Les palettes disponibles sont :
+- Gris 'gray'
+- Magenta 'magenta'
+- Vert 'green'
+- Orange 'orange'
+
+Voici un exemple d'utilisation :
+<code> bash ./julia.sh -x 0 -y 0 -p 'green'</code>
+
+Pour le tapis de Sierpinski, le script prend la hauteur de l'image souhaitée, la largeur, ainsi que le nombre d'itérations (doit être < 6 pour ne pas générer d'images trop lourdes)
+
+Voici un exemple d'utilisation :
+<code> bash ./tapis.sh -h 1000 -w 1000 -n 4 </code>

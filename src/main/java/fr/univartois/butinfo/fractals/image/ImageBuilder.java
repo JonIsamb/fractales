@@ -244,7 +244,7 @@ public class ImageBuilder {
                     }
                 }
             }
-        } else {
+        } else if ("tapis".equals(suite)){
             Sierpinski test = new Sierpinski(width,height);
             test.methode(pathToFile, iterationsMax);
         }

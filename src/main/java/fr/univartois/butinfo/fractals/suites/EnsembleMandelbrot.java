@@ -6,18 +6,31 @@ import java.util.Iterator;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 
+/**
+ * Classe representant l'ensemble de Mandelbrot
+ * @author Jonathan Isambourg
+ */
 public class EnsembleMandelbrot implements SuitesStrategy {
 
     private IComplex z;
 
     private int maxIterations;
 
-
+    /**
+     *
+     * @param z Une instance de Icomplex
+     * @param maxIterations nombre max d'iteration
+     */
     public EnsembleMandelbrot(IComplex z, int maxIterations){
         this.z = z;
         this.maxIterations = maxIterations;
     }
 
+    /**
+     *
+     * @param previous une instance
+     * @return renvoi le prochain terme
+     */
     @Override
     public IComplex calculateNextTerm(IComplex previous) {
         if (previous == null){
@@ -26,6 +39,10 @@ public class EnsembleMandelbrot implements SuitesStrategy {
         return (previous.multiply(previous)).add(z);
     }
 
+    /**
+     *
+     * @return une nouvelle instance de SuiteIterator
+     */
     @Override
     public Iterator<IComplex> iterator() {
         return new SuiteIterator(this, maxIterations);

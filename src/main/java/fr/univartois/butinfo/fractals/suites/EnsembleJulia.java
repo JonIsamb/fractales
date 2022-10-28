@@ -12,11 +12,11 @@ import java.util.function.Consumer;
  */
 public class EnsembleJulia implements SuitesStrategy {
 
-    private IComplex z;
+    protected IComplex z;
 
-    private IComplex c;
+    protected IComplex c;
 
-    private int maxIterations;
+    protected int maxIterations;
 
     /**
      *Constructeur

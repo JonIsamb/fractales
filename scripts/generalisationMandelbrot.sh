@@ -14,7 +14,7 @@ do
 done
 
 
-java -jar ../build/libs/sae-2022-2023.jar -f 'm' -h 1080 -n 30 -o '../generalisationMandelbrot/generalisationMandelbrot.png' -p "$palette" -s 0.0015 -w 1080 -x $focusX -y $focusY
+java -jar ../build/libs/sae-2022-2023.jar -f 'gm' -h 2048 -n 50 -o '../generalisationMandelbrot/generalisationMandelbrot.png' -p "$palette" -s 0.0007 -w 2048 -x $focusX -y $focusY
 
 
 

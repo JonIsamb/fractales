@@ -5,19 +5,7 @@ import fr.univartois.butinfo.fractals.complex.IComplex;
 import java.util.Iterator;
 import java.util.function.BinaryOperator;
 
-/**
- * Classe donnant la generalisation de l'ensemble julia
- * @author Jonathan Isambourg
- */
-public class GeneralisationJulia implements SuitesStrategy {
-
-    private IComplex z;
-
-    private IComplex c;
-
-    private int maxIterations;
-
-    private SuiteIterator iterator;
+public class GeneralisationJulia extends EnsembleJulia {
 
     private BinaryOperator<IComplex> binaryOperator;
 
@@ -29,11 +17,8 @@ public class GeneralisationJulia implements SuitesStrategy {
      * @param binaryOperator un operateur binaire
      */
     public GeneralisationJulia(IComplex z, IComplex c, int maxIterations, BinaryOperator<IComplex> binaryOperator){
-        this.z = z;
-        this.c = c;
-        this.maxIterations = maxIterations;
+        super(z, c, maxIterations);
         this.binaryOperator = binaryOperator;
-        this.iterator = new SuiteIterator(this, maxIterations);
     }
 
     /**

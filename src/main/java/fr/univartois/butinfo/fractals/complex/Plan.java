@@ -18,14 +18,23 @@ public class Plan implements IPlan{
      */
     private int width;
 
-    /**
-     * Declaration du constructeur de plan
-     * @param height Attribut height
-     * @param width Attribut width
-     */
-    public Plan(int height, int width) {
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+
+    private Complex focus;
+
+    public Plan(int height, int width, Complex focus) {
+
         this.height = height;
         this.width = width;
+        this.focus = focus;
     }
 
     /**
@@ -60,8 +69,11 @@ public class Plan implements IPlan{
      */
     @Override
     public Pixel asPixel(IPointPlan point, IFractalImage image) {
-        int row= (int) ((point.getX()+(width/2))-.5);
-        int column= (int) (((height/2)+point.getY()-.5));
-        return new Pixel(image,row,column);
+        Complex c = (Complex) point.getComplex();
+
+        int column = (int) ((c.getRealPart()+(width/2.))-.5);
+        int row = (int) (((height/2) - c.getImaginaryPart()-.5));
+
+        return new Pixel(image, row, column);
     }
 }

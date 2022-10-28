@@ -1,13 +1,11 @@
 package fr.univartois.butinfo.fractals.complex;
 
-/**
- * Création de la classe SumPlan qui extends Plan et implements Iplan, elle sert a faire des translations dans un plan
- * @author Axel Poteau
- */
-public class SumPlan extends Plan implements IPlan{
-    /**
-     * Declaration de l'attribut cons instance de IComplex
-     */
+import fr.univartois.butinfo.fractals.image.IFractalImage;
+import fr.univartois.butinfo.fractals.image.Pixel;
+import fr.univartois.butinfo.fractals.suites.IComplexAdapter;
+import fr.univartois.butinfo.fractals.suites.IPointPlan;
+
+public class SumPlan implements IPlan{
     private IComplex cons;
     /**
      * Declaration de l'attribut plan instance de IPlan
@@ -15,19 +13,10 @@ public class SumPlan extends Plan implements IPlan{
     private IPlan plan;
 
 
-    /**
-     * Déclaration du constructeur de SumPlan de la classe SumPlan
-     * @param height Attribut Height via le super
-     * @param width attribut width via le super
-     * @param cons attribut cons
-     * @param plan attribut plan
-     */
-    public SumPlan(int height, int width, IComplex cons, IPlan plan) {
 
-        super(height,width);
+    public SumPlan(IPlan plan, IComplex cons) {
         this.cons = cons;
         this.plan = plan;
-
     }
 
     /**
@@ -39,5 +28,15 @@ public class SumPlan extends Plan implements IPlan{
     @Override
     public IComplex asComplex(int row, int column) {
         return plan.asComplex(row,column).add(cons);
+    }
+
+    @Override
+    public Pixel asPixel(IComplex complex, IFractalImage image) {
+        return plan.asPixel(complex.subtract(cons), image);
+    }
+
+    @Override
+    public Pixel asPixel(IPointPlan point, IFractalImage image) {
+        return plan.asPixel(new IComplexAdapter(point.getComplex().subtract(cons)), image);
     }
 }

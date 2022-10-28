@@ -98,7 +98,7 @@ public class Sierpinski extends FigureMethode {
     public PrintWriter figure(PrintWriter write, int iterate) {
         Color color = Color.white;
 
-        Plan plan = new Plan(super.getHeight(),super.getWidth());
+        Plan plan = new Plan(super.getHeight(),super.getWidth(), new Complex(1, 1));
         write = loop(write,plan,color,iterate);
 
         return write;

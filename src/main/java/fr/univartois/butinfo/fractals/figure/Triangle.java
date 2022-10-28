@@ -20,11 +20,28 @@ public class Triangle implements IFigure{
     }
 
 
+    public IComplex getPosx() {
+        return posx;
+    }
+
+    public IComplex getPosy() {
+        return posy;
+    }
+
+    public IComplex getPosz() {
+        return posz;
+    }
+
     @Override
     public String repr() {
         return "<polygon points='"+posx.getRealPart()+", "+posx.getImaginaryPart()+" "+posy.getRealPart()+", "+posy.getImaginaryPart()+" "+posz.getRealPart()+", "+posz.getImaginaryPart()+"' fill ='rgb("+color.getRed()+","+color.getGreen()+","+color.getBlue()+")'/>";
 
 
 
+    }
+
+    @Override
+    public IComplex getPos() {
+        return null;
     }
 }

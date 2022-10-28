@@ -5,8 +5,21 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
 public abstract class FigureMethode {
+    private int height;
+    private int width;
+    public FigureMethode(int height, int width){
+        this.height=height;
+        this.width=width;
+    }
 
-    public FigureMethode(){}
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
     public  PrintWriter create(String filepath){
         PrintWriter writter = null;
         try{
@@ -18,7 +31,7 @@ public abstract class FigureMethode {
         return writter;
 
     }
-    public PrintWriter header(PrintWriter write, int height, int width){
+    public PrintWriter header(PrintWriter write){
 
         write.write("<svg width='"+width+"' height='"+height+"' xmlns=\"http://www.w3.org/2000/svg\">");
         return write;
@@ -35,13 +48,10 @@ public abstract class FigureMethode {
         writter.close();
         return writter;
     }
-    public void methode(String file,int iterate,int height, int width){
+    public void methode(String file,int iterate){
         PrintWriter writer = create(file);
-        writer=header(writer,height,width);
-        for(int x =0;x<iterate;x++){
-            writer = figure(writer,iterate);
-
-        }
+        writer=header(writer);
+        writer = figure(writer,iterate);
         writer = footer(writer);
         writer = flush(writer);
 

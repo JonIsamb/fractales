@@ -64,15 +64,6 @@ class BufferedImageAdapter {
 + getWidth(): int
 + getPixel(int, int): Pixel
   }
-  class Circle {
-+ repr(): String
-+ getPos(): IComplex
-  }
-  class ColorDecorator {
-+ getColor(): Color
-+ masque(): Color
-+ getPalette(int, int): Color
-  }
   class Complex {
 + divide(IComplex): IComplex
 + hashCode(): int
@@ -96,27 +87,6 @@ class BufferedImageAdapter {
 + calculateNextTerm(IComplex): IComplex
 + iterator(): Iterator<IComplex>
   }
-  class FigureComposite {
-+ repr(): String
-+ getPos(): IComplex
-+ add(IFigure): void
-+ remove(IFigure): void
-  }
-  class FigureDecorator {
-+ scale(String, int): String
-+ translation(String, IComplex): String
-+ Rotate(String, int): String
-  }
-  class FigureMethode {
-+ header(PrintWriter): PrintWriter
-+ methode(String, int): void
-+ footer(PrintWriter): PrintWriter
-+ figure(PrintWriter, int): PrintWriter
-+ create(String): PrintWriter
-+ flush(PrintWriter): PrintWriter
-+ getHeight(): int
-+ getWidth(): int
-  }
   class Fractals {
 - parseCliArguments(String[]): void
 + buildFractal(): void
@@ -130,10 +100,6 @@ class BufferedImageAdapter {
   class GeneralisationMandelbrot {
 + calculateNextTerm(IComplex): IComplex
 + iterator(): Iterator<IComplex>
-  }
-  interface IColor << interface >> {
-+ masque(): Color
-+ getPalette(int, int): Color
   }
   interface IComplex << interface >> {
 + conjugate(): IComplex
@@ -171,10 +137,6 @@ class BufferedImageAdapter {
   ~ testToString(): void
   ~ testMultiplyIComplex(): void
   }
-  interface IFigure << interface >> {
-+ repr(): String
-+ getPos(): IComplex
-  }
   interface IFractalImage << interface >> {
 + getHeight(): int
 + getWidth(): int
@@ -206,43 +168,10 @@ class BufferedImageAdapter {
 + setHeight(int): void
 + setPalette(String): void
   }
-  class Line {
-+ repr(): String
-+ getPos(): IComplex
-+ getPosy(): IComplex
-  }
-  class MasqueBlueDecorator {
-+ getPalette(int, int): Color
-+ masque(): Color
-  }
-  class MasqueGreenDecorator {
-+ getPalette(int, int): Color
-+ masque(): Color
-  }
-  class MasqueRedDecorator {
-+ getPalette(int, int): Color
-+ masque(): Color
-  }
   class MultiplyPlan {
 + asPixel(IComplex, IFractalImage): Pixel
 + asPixel(IPointPlan, IFractalImage): Pixel
 + asComplex(int, int): IComplex
-  }
-  class PaletteGray {
-+ masque(): Color
-+ getPalette(int, int): Color
-  }
-  class PaletteGreen {
-+ masque(): Color
-+ getPalette(int, int): Color
-  }
-  class PaletteMagenta {
-+ getPalette(int, int): Color
-+ masque(): Color
-  }
-  class PaletteOrange {
-+ getPalette(int, int): Color
-+ masque(): Color
   }
   class Pixel {
 + getImage(): IFractalImage
@@ -256,15 +185,6 @@ class BufferedImageAdapter {
 + getWidth(): int
 + getHeight(): int
 + asPixel(IPointPlan, IFractalImage): Pixel
-  }
-  class Rectangle {
-+ getPos(): IComplex
-+ repr(): String
-  }
-  class Sierpinski {
-+ loop(PrintWriter, Plan, Color, int): PrintWriter
-+ figure(PrintWriter, int): PrintWriter
-+ draw(PrintWriter, double, double, Color, IFigure, int, int, IComplex, double): void
   }
   class SuiteChaotique {
 + iterator(): Iterator<IPointPlan>
@@ -304,13 +224,6 @@ class BufferedImageAdapter {
 + asPixel(IComplex, IFractalImage): Pixel
 + asPixel(IPointPlan, IFractalImage): Pixel
   }
-  class Triangle {
-+ getPosy(): IComplex
-+ getPosz(): IComplex
-+ getPos(): IComplex
-+ repr(): String
-+ getPosx(): IComplex
-  }
 
 ImageBuilder              -[#000082,plain]-o EnsembleJulia
 ImageBuilder              -[#000082,plain]-o EnsembleMandelbrot
@@ -318,35 +231,20 @@ ImageBuilder              -[#000082,plain]-o GeneralisationJulia
 ImageBuilder              -[#000082,plain]-o GeneralisationMandelbrot
 ImageBuilder              -[#000082,plain]-o SuiteCirculaire
 ImageBuilder              -[#000082,plain]-o SuiteFeigenBaum
-BufferedImageAdapter      -[#008200,dashed]-^  IFractalImage            
-Circle                    -[#008200,dashed]-^  IFigure                  
-ColorDecorator            -[#008200,dashed]-^  IColor                   
+BufferedImageAdapter      -[#008200,dashed]-^  IFractalImage                              
 Complex                   -[#008200,dashed]-^  IComplex                 
 EnsembleJulia             -[#008200,dashed]-^  SuitesStrategy           
-EnsembleMandelbrot        -[#008200,dashed]-^  SuitesStrategy           
-FigureComposite           -[#008200,dashed]-^  IFigure                  
+EnsembleMandelbrot        -[#008200,dashed]-^  SuitesStrategy                           
 GeneralisationJulia       -[#008200,dashed]-^  SuitesStrategy           
 GeneralisationMandelbrot  -[#008200,dashed]-^  SuitesStrategy           
-IComplexAdapter           -[#008200,dashed]-^  IPointPlan               
-Line                      -[#008200,dashed]-^  IFigure                  
-MasqueBlueDecorator       -[#000082,plain]-^  ColorDecorator           
-MasqueGreenDecorator      -[#000082,plain]-^  ColorDecorator           
-MasqueRedDecorator        -[#000082,plain]-^  ColorDecorator           
-MultiplyPlan              -[#008200,dashed]-^  IPlan                    
-PaletteGray               -[#008200,dashed]-^  IColor                   
-PaletteGreen              -[#008200,dashed]-^  IColor                   
-PaletteMagenta            -[#008200,dashed]-^  IColor                   
-PaletteOrange             -[#008200,dashed]-^  IColor                   
-Plan                      -[#008200,dashed]-^  IPlan                    
-Rectangle                 -[#008200,dashed]-^  IFigure                  
-Sierpinski                -[#000082,plain]-^  FigureMethode            
+IComplexAdapter           -[#008200,dashed]-^  IPointPlan                        
+MultiplyPlan              -[#008200,dashed]-^  IPlan                               
 SuiteChaotique            -[#008200,dashed]-^  SuitesChaotiqueStrategy  
 SuiteCirculaire           -[#000082,plain]-^  SuiteChaotique           
 SuiteCirculaire           -[#008200,dashed]-^  SuitesChaotiqueStrategy  
 SuiteFeigenbaum           -[#000082,plain]-^  SuiteChaotique           
 SuiteFeigenbaum           -[#008200,dashed]-^  SuitesChaotiqueStrategy  
 SumPlan                   -[#008200,dashed]-^  IPlan                    
-Triangle                  -[#008200,dashed]-^  IFigure
 @enduml
 ```
 

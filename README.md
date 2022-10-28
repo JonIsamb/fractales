@@ -349,3 +349,112 @@ SumPlan                   -[#008200,dashed]-^  IPlan
 Triangle                  -[#008200,dashed]-^  IFigure
 @enduml
 ```
+
+```plantuml
+
+
+@startuml
+
+  class Circle {
++ repr(): String
++ getPos(): IComplex
+  }
+  class ColorDecorator {
++ getColor(): Color
++ masque(): Color
++ getPalette(int, int): Color
+  }
+  class FigureComposite {
++ repr(): String
++ getPos(): IComplex
++ add(IFigure): void
++ remove(IFigure): void
+  }
+  class FigureDecorator {
++ scale(String, int): String
++ translation(String, IComplex): String
++ Rotate(String, int): String
+  }
+  class FigureMethode {
++ header(PrintWriter): PrintWriter
++ methode(String, int): void
++ footer(PrintWriter): PrintWriter
++ figure(PrintWriter, int): PrintWriter
++ create(String): PrintWriter
++ flush(PrintWriter): PrintWriter
++ getHeight(): int
++ getWidth(): int
+  }
+  interface IColor << interface >> {
++ masque(): Color
++ getPalette(int, int): Color
+  }
+  interface IFigure << interface >> {
++ repr(): String
++ getPos(): IComplex
+  }
+  class Line {
++ repr(): String
++ getPos(): IComplex
++ getPosy(): IComplex
+  }
+  class MasqueBlueDecorator {
++ getPalette(int, int): Color
++ masque(): Color
+  }
+  class MasqueGreenDecorator {
++ getPalette(int, int): Color
++ masque(): Color
+  }
+  class MasqueRedDecorator {
++ getPalette(int, int): Color
++ masque(): Color
+  }
+  class PaletteGray {
++ masque(): Color
++ getPalette(int, int): Color
+  }
+  class PaletteGreen {
++ masque(): Color
++ getPalette(int, int): Color
+  }
+  class PaletteMagenta {
++ getPalette(int, int): Color
++ masque(): Color
+  }
+  class PaletteOrange {
++ getPalette(int, int): Color
++ masque(): Color
+  }
+  class Rectangle {
++ getPos(): IComplex
++ repr(): String
+  }
+  class Sierpinski {
++ loop(PrintWriter, Plan, Color, int): PrintWriter
++ figure(PrintWriter, int): PrintWriter
++ draw(PrintWriter, double, double, Color, IFigure, int, int, IComplex, double): void
+  }
+  class Triangle {
++ getPosy(): IComplex
++ getPosz(): IComplex
++ getPos(): IComplex
++ repr(): String
++ getPosx(): IComplex
+  }
+
+Circle                    -[#008200,dashed]-^  IFigure                  
+ColorDecorator            -[#008200,dashed]-^  IColor                   
+FigureComposite           -[#008200,dashed]-^  IFigure                                
+Line                      -[#008200,dashed]-^  IFigure                  
+MasqueBlueDecorator       -[#000082,plain]-^  ColorDecorator           
+MasqueGreenDecorator      -[#000082,plain]-^  ColorDecorator           
+MasqueRedDecorator        -[#000082,plain]-^  ColorDecorator                             
+PaletteGray               -[#008200,dashed]-^  IColor                   
+PaletteGreen              -[#008200,dashed]-^  IColor                   
+PaletteMagenta            -[#008200,dashed]-^  IColor                   
+PaletteOrange             -[#008200,dashed]-^  IColor                                     
+Rectangle                 -[#008200,dashed]-^  IFigure                                    
+Triangle                  -[#008200,dashed]-^  IFigure
+@enduml
+```

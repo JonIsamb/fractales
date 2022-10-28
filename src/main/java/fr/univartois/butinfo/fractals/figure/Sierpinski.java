@@ -1,9 +1,11 @@
 package fr.univartois.butinfo.fractals.figure;
 
-import fr.univartois.butinfo.fractals.complex.Complex;
-import fr.univartois.butinfo.fractals.complex.IComplex;
-import fr.univartois.butinfo.fractals.complex.IPlan;
-import fr.univartois.butinfo.fractals.complex.Plan;
+import fr.univartois.butinfo.fractals.complex.points.Complex;
+import fr.univartois.butinfo.fractals.complex.points.IComplex;
+import fr.univartois.butinfo.fractals.complex.plans.Plan;
+import fr.univartois.butinfo.fractals.figure.formes.FigureComposite;
+import fr.univartois.butinfo.fractals.figure.formes.IFigure;
+import fr.univartois.butinfo.fractals.figure.formes.Rectangle;
 
 import java.awt.*;
 import java.io.PrintWriter;
@@ -35,7 +37,7 @@ public class Sierpinski extends FigureMethode {
         double height = plan.getHeight();
         double width = plan.getWidth();
         IComplex pos = new Complex(width/3,height/3);
-        IFigure carre = new Rectangle(color,pos,width/3,height/3);
+        IFigure carre = new fr.univartois.butinfo.fractals.figure.formes.Rectangle(color,pos,width/3,height/3);
         writer.write(carre.repr());
 
         color = color.darker();
@@ -62,25 +64,25 @@ public class Sierpinski extends FigureMethode {
             height = height/3;
             width = width/3;
             IComplex pos1 = new Complex(height+origin.getRealPart(),height+ origin.getImaginaryPart());
-            IFigure carre1 = new Rectangle(color, pos1, width, height);
+            IFigure carre1 = new fr.univartois.butinfo.fractals.figure.formes.Rectangle(color, pos1, width, height);
 
             IComplex pos2 = new Complex(height + carre.getPos().getRealPart(), width+ origin.getImaginaryPart());
-            IFigure carre2 = new Rectangle(color, pos2, width, height);
+            IFigure carre2 = new fr.univartois.butinfo.fractals.figure.formes.Rectangle(color, pos2, width, height);
 
             IComplex pos3 = new Complex(height + carre.getPos().getRealPart()*2-origin.getRealPart(), width+ origin.getImaginaryPart());
-            IFigure carre3 = new Rectangle(color, pos3, width, height);
+            IFigure carre3 = new fr.univartois.butinfo.fractals.figure.formes.Rectangle(color, pos3, width, height);
 
             IComplex pos4 = new Complex(height + carre.getPos().getRealPart()*2-origin.getRealPart(), width + carre.getPos().getImaginaryPart());
-            IFigure carre4 = new Rectangle(color, pos4, width, height);
+            IFigure carre4 = new fr.univartois.butinfo.fractals.figure.formes.Rectangle(color, pos4, width, height);
 
             IComplex pos5 = new Complex(height + carre.getPos().getRealPart()*2-origin.getRealPart(), width + carre.getPos().getImaginaryPart()*2- origin.getImaginaryPart());
-            IFigure carre5 = new Rectangle(color, pos5, width, height);
+            IFigure carre5 = new fr.univartois.butinfo.fractals.figure.formes.Rectangle(color, pos5, width, height);
 
             IComplex pos6 = new Complex(height + carre.getPos().getRealPart(), width + carre.getPos().getImaginaryPart()*2- origin.getImaginaryPart());
-            IFigure carre6 = new Rectangle(color, pos6, width, height);
+            IFigure carre6 = new fr.univartois.butinfo.fractals.figure.formes.Rectangle(color, pos6, width, height);
 
             IComplex pos7 = new Complex(height+origin.getRealPart(), width + carre.getPos().getImaginaryPart()*2- origin.getImaginaryPart());
-            IFigure carre7 = new Rectangle(color, pos7, width, height);
+            IFigure carre7 = new fr.univartois.butinfo.fractals.figure.formes.Rectangle(color, pos7, width, height);
 
             IComplex pos8 = new Complex(height+origin.getRealPart(), width + carre.getPos().getImaginaryPart());
             IFigure carre8 = new Rectangle(color, pos8, width, height);

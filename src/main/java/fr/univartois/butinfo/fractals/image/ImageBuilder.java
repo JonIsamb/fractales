@@ -2,22 +2,26 @@ package fr.univartois.butinfo.fractals.image;
 
 
 import fr.univartois.butinfo.fractals.color.*;
-import fr.univartois.butinfo.fractals.complex.*;
+import fr.univartois.butinfo.fractals.color.palettes.PaletteGray;
+import fr.univartois.butinfo.fractals.color.palettes.PaletteGreen;
+import fr.univartois.butinfo.fractals.color.palettes.PaletteMagenta;
+import fr.univartois.butinfo.fractals.color.palettes.PaletteOrange;
+import fr.univartois.butinfo.fractals.complex.plans.SumPlan;
+import fr.univartois.butinfo.fractals.complex.points.IComplexAdapter;
+import fr.univartois.butinfo.fractals.complex.points.IPointPlan;
 import fr.univartois.butinfo.fractals.figure.Sierpinski;
-import fr.univartois.butinfo.fractals.suites.EnsembleJulia;
-import fr.univartois.butinfo.fractals.suites.EnsembleMandelbrot;
-import fr.univartois.butinfo.fractals.suites.SuiteIterator;
-import fr.univartois.butinfo.fractals.complex.Complex;
-import fr.univartois.butinfo.fractals.complex.IComplex;
-import fr.univartois.butinfo.fractals.complex.MultiplyPlan;
-import fr.univartois.butinfo.fractals.complex.Plan;
-import fr.univartois.butinfo.fractals.suites.*;
+import fr.univartois.butinfo.fractals.suites.chaotiques.SuiteChaotiqueIterator;
+import fr.univartois.butinfo.fractals.suites.chaotiques.SuiteCirculaire;
+import fr.univartois.butinfo.fractals.suites.chaotiques.SuiteFeigenbaum;
+import fr.univartois.butinfo.fractals.suites.chaotiques.SuitesChaotiqueStrategy;
+import fr.univartois.butinfo.fractals.suites.complexes.*;
+import fr.univartois.butinfo.fractals.complex.points.Complex;
+import fr.univartois.butinfo.fractals.complex.points.IComplex;
+import fr.univartois.butinfo.fractals.complex.plans.MultiplyPlan;
+import fr.univartois.butinfo.fractals.complex.plans.Plan;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Déclaration de la classe ImageBuilder qui permet de générer l'image

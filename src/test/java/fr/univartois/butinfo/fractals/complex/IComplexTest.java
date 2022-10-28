@@ -349,8 +349,7 @@ class IComplexTest {
 
         String rec = rect.repr();
         System.out.println(FigureDecorator.translation(rec,complex));
-        rec = FigureDecorator.translation(rec,complex);
-        System.out.println(FigureDecorator.Rotate(rec,15));
+        rec = FigureDecorator.translation(rec,complex);s
         System.out.println(FigureDecorator.scale(rec,15));
 
         FigureComposite listeFigure = new FigureComposite();

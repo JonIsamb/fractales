@@ -28,8 +28,8 @@ public class FigureDecorator{
      * @param degree Le degree par lequel on veut tourner la figure
      * @return la figure avec son nouvel emplacement
      */
-    public static String Rotate(String x, int degree){
-        x = "<g transform=\"rotate("+degree+")\" >"+x+"</g>";
+    public static String Rotate(String x, double degree, double posx, double posy){
+        x = "<g transform=\"rotate("+degree+","+posx+","+posy+")\" >"+x+"</g>";
         return x;
     }
 
@@ -39,7 +39,7 @@ public class FigureDecorator{
      * @param scale La nouvelle echelle
      * @return la representation de la figure a la nouvelle echelle
      */
-    public static String scale(String x, int scale){
+    public static String scale(String x, double scale){
         x = "<g transform=\"scale("+scale+")\" >"+x+"</g>";
         return x;
     }

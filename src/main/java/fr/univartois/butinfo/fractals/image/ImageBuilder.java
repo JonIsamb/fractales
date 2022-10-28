@@ -80,10 +80,10 @@ public class ImageBuilder {
     public IFractalImage getResult() throws IOException {
         IFractalImage image = new BufferedImageAdapter(height, width);
 
-        Plan plan = new Plan(height, width);
-        IComplex center = new Complex(focusX, focusY);
-        SumPlan centeredPlan = new SumPlan(height, width, center, plan);
-        MultiplyPlan scaledPlan = new MultiplyPlan(scale, centeredPlan, height, width);
+        Complex center = new Complex(focusX, focusY);
+        Plan plan = new Plan(height, width, center);
+        SumPlan centeredPlan = new SumPlan(plan, center);
+        MultiplyPlan scaledPlan = new MultiplyPlan(scale, centeredPlan);
 
         IComplex c = new Complex(-0.4,0.6);
 
@@ -134,22 +134,26 @@ public class ImageBuilder {
         } else {
             for(int x = 0; x<width; x++){
                 for(int y = 0; y<height; y++){
+                    //System.out.println("Base : " + x + " " + y);
                     IComplex point = scaledPlan.asComplex(x, y);
-                    //System.out.println(point.getRealPart() + "   " + point.getImaginaryPart());
+                    //System.out.println("Complexe : " + point.getRealPart() + "   " + point.getImaginaryPart());
                     IPointPlan pointPlan = new IComplexAdapter(point);
+
+                    Pixel test = scaledPlan.asPixel(pointPlan, image);
+                    //System.out.println("Test : " + test.getColumn() + " " + test.getRow());
+
                     //System.out.println(pointPlan.getComplex().getRealPart() + "   " + pointPlan.getComplex().getImaginaryPart());
-
-
                     SuitesChaotiqueStrategy typeSuite;
                     if ("cc".equals(suite)) {
-                        typeSuite = new SuiteCirculaire(pointPlan, iterationsMax, 20, 0.3F);
+                        typeSuite = new SuiteCirculaire(pointPlan, iterationsMax, 100, 0.0001F);
                     } else {
-                        typeSuite = new SuiteFeigenbaum(pointPlan, iterationsMax, 5, 0.1F);
+                        typeSuite = new SuiteFeigenbaum(pointPlan, iterationsMax, 100, 0.001F);
                     }
 
                     SuiteChaotiqueIterator iterator = (SuiteChaotiqueIterator) typeSuite.iterator();
                     while(iterator.hasNext()){
                         iterator.next();
+
                     }
                     int nbIteration = iterator.getNbIterations();
                     //System.out.println(nbIteration);
@@ -158,14 +162,18 @@ public class ImageBuilder {
 
                     IPointPlan precedent = iterator.getPrecedent();
 
-                    double xPixel = precedent.getX();
                     double yPixel = precedent.getY();
                     if ((yPixel < height/2) && (yPixel > -height/2)) {
                         //System.out.println(xPixel + " " + yPixel);
                         //System.out.println("oui");
                         Pixel pixel = scaledPlan.asPixel(precedent, image);
-                        pixel.setColor(color);
+                        //System.out.println("Pixel : " + pixel.getColumn() + "  " + pixel.getRow());
+                        if (pixel.getRow() > 0 && pixel.getRow() < width && pixel.getColumn() > 0 && pixel.getColumn() < height){
+                            pixel.setColor(color);
+                        }
                     }
+
+
                 }
             }
         }

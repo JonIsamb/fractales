@@ -94,8 +94,8 @@ public class Complex implements IComplex{
     @Override
     public IComplex divide(IComplex other) {
         double quotien = other.getRealPart()*other.getRealPart()+other.getImaginaryPart()*other.getImaginaryPart();
-        double re = this.getRealPart()* other.getRealPart()+this.getImaginaryPart()*other.getImaginaryPart();
-        double im = this.getImaginaryPart()*other.getRealPart()-this.getRealPart()*other.getImaginaryPart();
+        double re = this.getRealPart()*other.getRealPart() + this.getImaginaryPart()*other.getImaginaryPart();
+        double im = this.getImaginaryPart()*other.getRealPart() - this.getRealPart()*other.getImaginaryPart();
         re = re/quotien;
         im = im/quotien;
 

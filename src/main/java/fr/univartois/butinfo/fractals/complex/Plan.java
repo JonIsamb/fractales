@@ -4,6 +4,14 @@ public class Plan implements IPlan{
     private int height;
     private int width;
 
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
     public Plan(int height, int width) {
         this.height = height;
         this.width = width;

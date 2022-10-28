@@ -182,7 +182,7 @@ public class ImageBuilder {
                     } else if ("gj".equals(suite)){
                         typeSuite = new GeneralisationJulia(point, c, iterationsMax, (prev, comp) -> ((prev.multiply(prev).add(prev)).divide(prev.multiply(prev.multiply(prev)).add(comp))));
                     } else if ("gm".equals(suite)) {
-                        typeSuite = new GeneralisationMandelbrot(point, c, iterationsMax, (prev, comp) -> ((prev.multiply(prev).add(prev)).divide(prev.multiply(prev.multiply(prev)).add(comp))));
+                        typeSuite = new GeneralisationMandelbrot(point, iterationsMax, (z, comp) -> (((z.multiply(z)).add(z)).divide((z.multiply(z.multiply(z))).add(comp))));
                     } else {
                         typeSuite = new EnsembleJulia(point, c, iterationsMax);
                     }

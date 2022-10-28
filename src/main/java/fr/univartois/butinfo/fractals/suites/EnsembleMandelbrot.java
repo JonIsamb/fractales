@@ -8,9 +8,9 @@ import java.util.function.Consumer;
 
 public class EnsembleMandelbrot implements SuitesStrategy {
 
-    private IComplex z;
+    protected IComplex z;
 
-    private int maxIterations;
+    protected int maxIterations;
 
 
     public EnsembleMandelbrot(IComplex z, int maxIterations){

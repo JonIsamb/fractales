@@ -154,7 +154,7 @@ public class ImageBuilder {
         SumPlan centeredPlan = new SumPlan(plan, center);
         MultiplyPlan scaledPlan = new MultiplyPlan(scale, centeredPlan);
 
-        IComplex c = new Complex(-0.4,0.6);
+        IComplex c = new Complex(-0.8,0.156);
 
         IColor paletteColor;
         if ("magenta".equals(palette)){

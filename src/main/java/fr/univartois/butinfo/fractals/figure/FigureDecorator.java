@@ -1,9 +1,6 @@
 package fr.univartois.butinfo.fractals.figure;
 
-import fr.univartois.butinfo.fractals.complex.Complex;
-import fr.univartois.butinfo.fractals.complex.IComplex;
-
-import java.awt.*;
+import fr.univartois.butinfo.fractals.complex.points.IComplex;
 
 /**
  * Déclaration de la class FigureDecorator qui sert de décorateur pour une Figure

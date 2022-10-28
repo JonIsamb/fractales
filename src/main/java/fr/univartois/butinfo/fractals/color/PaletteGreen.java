@@ -5,20 +5,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Déclaration de la classe PaletteOrange qui implémente Icolor qui represente la palette Orange
+ * Déclaration de la classe PaletteMagenta qui implémente Icolor qui represente la palette magenta
  * @author Amaury Bonsigne
  */
-public class PaletteOrange implements IColor {
+public class PaletteGreen implements IColor {
     /**
      * Déclare l'attribut color representant la couleur de la palette
      */
     private Color color;
 
     /**
-     * Constructeur de la classe PaletteOrange qui donne la couleur Orange a color
+     * Constructeur de la classe PaletteMagenta qui donne la couleur Magenta a color
      */
-    public PaletteOrange(){
-        this.color=Color.ORANGE;
+    public PaletteGreen(){
+        this.color=Color.GREEN;
     }
 
     /**
@@ -32,7 +32,7 @@ public class PaletteOrange implements IColor {
         float nbIte = (float) nbIteration-1;
         float maxIte = (float) iterationsMax;
         float ratio = nbIte/maxIte;
-        return new Color(1, ratio, (float) 0.);
+        return new Color(0.5F, ratio, 0.5F);
     }
 
     /**

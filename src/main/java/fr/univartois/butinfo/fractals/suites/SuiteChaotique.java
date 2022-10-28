@@ -8,17 +8,23 @@ import java.util.Iterator;
  * @author Bonsigne Amaury
  */
 public abstract class SuiteChaotique implements SuitesChaotiqueStrategy{
-    IPointPlan premier;
-    int nbMaxIterations;
+    protected IPointPlan premier;
+    protected int nbMaxIterations;
+
+    protected int k;
+
+    protected float e;
 
     /**
      * Constructeur de la classe abstraite SuiteChaotique
      * @param premier Paramètre de type IPointPlan qui est un point du plan
      * @param nbMaxIterations Nombre maximum d'iterations de la suite
      */
-    public SuiteChaotique(IPointPlan premier,int nbMaxIterations){
+    public SuiteChaotique(IPointPlan premier,int nbMaxIterations, int k, float e){
         this.nbMaxIterations=nbMaxIterations;
         this.premier=premier;
+        this.k = k;
+        this.e = e;
     }
 
     /**
@@ -26,7 +32,7 @@ public abstract class SuiteChaotique implements SuitesChaotiqueStrategy{
      * @return l'instance de l'iterateur d'une suite chaotiques
      */
     public Iterator<IPointPlan> iterator(){
-        return new SuiteChaotiqueIterator(this,premier,nbMaxIterations);
+        return new SuiteChaotiqueIterator(this,premier,nbMaxIterations, k, e);
     }
 
     /**

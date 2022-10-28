@@ -1,24 +1,22 @@
 package fr.univartois.butinfo.fractals.color;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * Déclaration de la classe PaletteOrange qui implémente Icolor qui represente la palette Orange
- * @author Amaury Bonsigne
+ * Déclaration de la classe PaletteGray qui implémente Icolor qui represente la palette grise
+ * @author Jonathan Isambourg
  */
-public class PaletteOrange implements IColor {
+public class PaletteGray implements IColor {
     /**
      * Déclare l'attribut color representant la couleur de la palette
      */
     private Color color;
 
     /**
-     * Constructeur de la classe PaletteOrange qui donne la couleur Orange a color
+     * Constructeur de la classe PaletteGray qui donne la couleur grise a color
      */
-    public PaletteOrange(){
-        this.color=Color.ORANGE;
+    public PaletteGray(){
+        this.color=Color.GRAY;
     }
 
     /**
@@ -32,7 +30,7 @@ public class PaletteOrange implements IColor {
         float nbIte = (float) nbIteration-1;
         float maxIte = (float) iterationsMax;
         float ratio = nbIte/maxIte;
-        return new Color(1, ratio, (float) 0.);
+        return new Color(ratio, ratio, ratio);
     }
 
     /**

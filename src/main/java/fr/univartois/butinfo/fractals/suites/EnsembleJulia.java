@@ -6,7 +6,7 @@ import fr.univartois.butinfo.fractals.complex.IComplex;
 import java.util.Iterator;
 import java.util.function.Consumer;
 
-public class EnsembleJulia implements SuitesStrategy, Iterable<IComplex> {
+public class EnsembleJulia implements SuitesStrategy {
 
     private IComplex z;
 
@@ -32,10 +32,5 @@ public class EnsembleJulia implements SuitesStrategy, Iterable<IComplex> {
     @Override
     public Iterator<IComplex> iterator() {
         return new SuiteIterator(this, maxIterations);
-    }
-
-    @Override
-    public void forEach(Consumer<? super IComplex> action) {
-        Iterable.super.forEach(action);
     }
 }

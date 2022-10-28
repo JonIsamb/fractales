@@ -17,7 +17,7 @@ public class EnsembleMandelbrot implements SuitesStrategy {
     private int maxIterations;
 
     /**
-     *
+     *Constructeur
      * @param z Une instance de Icomplex
      * @param maxIterations nombre max d'iteration
      */
@@ -27,7 +27,7 @@ public class EnsembleMandelbrot implements SuitesStrategy {
     }
 
     /**
-     *
+     *calcule le prochain terme de la suite
      * @param previous une instance
      * @return renvoi le prochain terme
      */
@@ -40,7 +40,7 @@ public class EnsembleMandelbrot implements SuitesStrategy {
     }
 
     /**
-     *
+     *crée une nouvelle instance de SuiteIterator
      * @return une nouvelle instance de SuiteIterator
      */
     @Override

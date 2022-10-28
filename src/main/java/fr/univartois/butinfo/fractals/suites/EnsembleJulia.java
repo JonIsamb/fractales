@@ -19,7 +19,7 @@ public class EnsembleJulia implements SuitesStrategy {
     private int maxIterations;
 
     /**
-     *
+     *Constructeur
      * @param z Une iteration de Icomplex
      * @param c Une iteration de Icomplex, qui est une constante
      * @param maxIterations le nombre maximum d'iteration
@@ -31,7 +31,7 @@ public class EnsembleJulia implements SuitesStrategy {
     }
 
     /**
-     *
+     *Calcule le prochain terme de l'ensemble
      * @param previous une instance de IComplex
      * @return previous multiplier par lui meme avec l'ajout de la constante
      */
@@ -44,7 +44,7 @@ public class EnsembleJulia implements SuitesStrategy {
     }
 
     /**
-     *
+     *creer une nouvelle instance de SuiteIterator
      * @return une nouvelle instance de SuiteIterator
      */
     @Override

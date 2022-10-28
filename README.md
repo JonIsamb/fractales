@@ -56,9 +56,6 @@ section précédente.
 
 
 @startuml
-!theme plain
-top to bottom direction
-skinparam linetype ortho
 
 class BufferedImageAdapter {
 + getHeight(): int

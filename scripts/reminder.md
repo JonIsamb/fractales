@@ -1,0 +1,1 @@
+java -jar build/libs/sae-2022-2023.jar -f 'j' -h 1080 -n 200 -o 'images/test.png' -p 'orange' -s 0.003 -w 1080 -x 0 -y 0

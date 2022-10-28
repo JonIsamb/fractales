@@ -1,14 +1,11 @@
 package fr.univartois.butinfo.fractals.image;
 
 
-import fr.univartois.butinfo.fractals.color.IColor;
-import fr.univartois.butinfo.fractals.color.PaletteGray;
-import fr.univartois.butinfo.fractals.color.PaletteMagenta;
+import fr.univartois.butinfo.fractals.color.*;
 import fr.univartois.butinfo.fractals.complex.*;
 import fr.univartois.butinfo.fractals.suites.EnsembleJulia;
 import fr.univartois.butinfo.fractals.suites.EnsembleMandelbrot;
 import fr.univartois.butinfo.fractals.suites.SuiteIterator;
-import fr.univartois.butinfo.fractals.color.PaletteOrange;
 import fr.univartois.butinfo.fractals.complex.Complex;
 import fr.univartois.butinfo.fractals.complex.IComplex;
 import fr.univartois.butinfo.fractals.complex.MultiplyPlan;
@@ -164,6 +161,8 @@ public class ImageBuilder {
             paletteColor = new PaletteMagenta();
         } else if ("orange".equals(palette)){
             paletteColor = new PaletteOrange();
+        } else if ("green".equals(palette)){
+            paletteColor = new PaletteGreen();
         } else {
             paletteColor = new PaletteGray();
         }

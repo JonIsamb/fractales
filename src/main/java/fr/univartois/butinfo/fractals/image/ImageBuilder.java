@@ -3,6 +3,7 @@ package fr.univartois.butinfo.fractals.image;
 
 import fr.univartois.butinfo.fractals.color.*;
 import fr.univartois.butinfo.fractals.complex.*;
+import fr.univartois.butinfo.fractals.figure.Sierpinski;
 import fr.univartois.butinfo.fractals.suites.EnsembleJulia;
 import fr.univartois.butinfo.fractals.suites.EnsembleMandelbrot;
 import fr.univartois.butinfo.fractals.suites.SuiteIterator;
@@ -167,12 +168,8 @@ public class ImageBuilder {
             paletteColor = new PaletteGray();
         }
 
-        List<String> nomSuite = new ArrayList<String>();
-        nomSuite.add("j");
-        nomSuite.add("m");
-        nomSuite.add("gj");
-        nomSuite.add("gm");
-        if (nomSuite.contains(suite)){
+
+        if (("j".equals(suite)) || ("m".equals(suite)) || ("gj".equals(suite)) || ("gm".equals(suite))){
             for(int x = 0; x<width; x++){
                 for(int y = 0; y<height; y++){
                     IComplex point = scaledPlan.asComplex(x, y);
@@ -202,7 +199,7 @@ public class ImageBuilder {
                     pixel.setColor(color);
                 }
             }
-        } else {
+        } else if (("j".equals(suite)) || ("j".equals(suite))){
             for(int x = 0; x<width; x++){
                 for(int y = 0; y<height; y++){
                     //System.out.println("Base : " + x + " " + y);
@@ -217,7 +214,9 @@ public class ImageBuilder {
                     SuitesChaotiqueStrategy typeSuite;
                     if ("cc".equals(suite)) {
                         typeSuite = new SuiteCirculaire(pointPlan, iterationsMax, 100, 0.0001F);
-                    } else {
+                    } else if ("cf".equals(suite)){
+                        typeSuite = new SuiteFeigenbaum(pointPlan, iterationsMax, 100, 0.001F);
+                    }  else {
                         typeSuite = new SuiteFeigenbaum(pointPlan, iterationsMax, 100, 0.001F);
                     }
 
@@ -243,10 +242,11 @@ public class ImageBuilder {
                             pixel.setColor(color);
                         }
                     }
-
-
                 }
             }
+        } else {
+            Sierpinski test = new Sierpinski(width,height);
+            test.methode(pathToFile, iterationsMax);
         }
         image.saveAs(pathToFile);
         return image;

@@ -8,10 +8,29 @@ import fr.univartois.butinfo.fractals.complex.Plan;
 import java.awt.*;
 import java.io.PrintWriter;
 
+
+/**
+ * Creation du tapis de sierpinski
+ * @author Axel Poteau
+ */
 public class Sierpinski extends FigureMethode {
+    /**
+     * Declaration du constructeur de la classe Sierpinski appelant celui de FigureMethode
+     * @param width
+     * @param height
+     */
     public Sierpinski(int width, int height){
         super(height,width);
     }
+
+    /**
+     * Fonction principale servant a dessiner le tapis, celle ci dessine le premier carrer au centre et appel draw qui dessinera les autres
+     * @param writer Instance de PrintWriter
+     * @param plan Instance de plan
+     * @param color Instance de color
+     * @param nb_max nombre max d'instance du tapis
+     * @return renvoi le printwriter afin de le fermer et afficher le svg
+     */
     public PrintWriter loop(PrintWriter writer, Plan plan, Color color, int nb_max){
         double height = plan.getHeight();
         double width = plan.getWidth();
@@ -25,6 +44,19 @@ public class Sierpinski extends FigureMethode {
         return writer;
 
     }
+
+    /**
+     *
+     * @param writer Instance de PrintWriter
+     * @param height Hauteur du carre
+     * @param width Largeur du carre
+     * @param color Instance de color pour colorier les carra
+     * @param carre Instance de Rectangle, Carre centrale autour du quel l'on va dessiner les autres
+     * @param nb_max Nb max d'instance du tapis
+     * @param cons Constente suivant le nombre d'instance du tapis
+     * @param origin Instance de complex, point d'origine a utiliser pour placer les carres
+     * @param taille Taille a utiliser pour changer le complex origin
+     */
     public void draw(PrintWriter writer, double height, double width, Color color, IFigure carre, int nb_max, int cons, IComplex origin, double taille) {
         if (cons < nb_max){
             height = height/3;
@@ -94,6 +126,12 @@ public class Sierpinski extends FigureMethode {
 
     }
 
+    /**
+     *
+     * @param write Instance PrintWriter
+     * @param iterate nombre d'iterations
+     * @return write afin d'afficher le tapis dessiner
+     */
     @Override
     public PrintWriter figure(PrintWriter write, int iterate) {
         Color color = Color.white;

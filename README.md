@@ -1,3 +1,5 @@
+# Générateur de fractales
+
 # Rapport SAE3.01
 ## Développement d'une application
 ### Membres du groupe :
@@ -6,7 +8,7 @@
 - Amaury Bonsigne  
 
 ### Explication des patrons de conception  
-- **Question 5 et 6** : On a utilisé un Décorateur afin d'affecter dynamiquement le plan.
+- **Question 5 et 6** : Nous avons utilisé un Décorateur afin d'affecter dynamiquement le plan.
 - **Question 7** : Une stratégie a été utilisée pour pouvoir représenter
 les différentes suites qui avaient la même base.
 - **Question 8** : Nous avons choisi d'utiliser un itérateur afin
@@ -55,6 +57,8 @@ Vous pouvez retrouver des images de fractales dans le dossier ./imagesDemandees.
 Elles ont été générées avec les paramètres selon nous "optimaux" pour améliorer le rendu.
 
 Le diagramme de classe se trouve dans le fichier README.md à la racine du projet.
+
+# Fonctionnement
 
 Pour utiliser les scripts, vous devez d'abord lancer la tâche jar de Gradle.
 Ensuite, vous pourrez lancer les scripts depuis le répertoire scripts.
